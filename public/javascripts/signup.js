@@ -24,7 +24,7 @@ window.addEventListener('load', () => {
       <input type="text" name="role" value="PACIENTE" hidden>
       <input type="text" name="CPF" placeholder="Digite seu CPF">
       <div>
-        <h3>Principal Endereço de endereço de atendimento</h3>
+        <h3>Principal Endereço de endereço do paciente</h3>
         <input type="text" name="cep" placeholder="Digite seu CEP">
         <input type="text" name="logradouro" placeholder="Digite o nome da rua">
         <input type="text" name="bairro" placeholder="Digite o nome do bairro">
@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
       </div>
       <div>
       <h3>Médico de confiança (opcional)</h3>
-        <input type="text" name="Numero" placeholder="Digite o nome do médico de confiança">
+        <input type="text" name="medico" placeholder="Digite o nome do médico de confiança">
       </div>
       <button  type="submit">Finalizar Cadastro</button>
       `

@@ -7,7 +7,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 
 
-/* GET home page */
+/* Login routes */
 router.get('/login', (req, res, next) => {
     res.render('public/login', { message: req.flash('error') });
   });
@@ -27,6 +27,15 @@ router.post(
     res.redirect('/');
   });
 
+/* Sign Up routes */
+router.get('/signup', (req, res, next) => {
+  console.log('signing up')
+  res.render('public/sign-up', { message: req.flash('error') });
+});
 
+router.post('/signup', (req, res, next) => {
+  console.log(req.body);
+  
+});
 
 module.exports = router;
