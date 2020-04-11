@@ -1,0 +1,13 @@
+<div>
+  <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="Please type the username">
+    <input type="password" name="password" placeholder="Please type the password">
+
+    <button type="submit">Login</button>
+
+   </div>
+  {{#if message}}
+    <div class="error-message">{{ message }}</div>
+  {{/if}}
+  <div>
+
