@@ -1,16 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
-const Paciente = require('../models/Paciente');
+const User = require('../../models/User');
+const Paciente = require('../../models/Paciente');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const flash = require('connect-flash');
 
 
-//Bcrypt parameters
-
-
-/* GET home page */
+/* Login routes */
 router.get('/login', (req, res, next) => {
     res.render('public/login', { message: req.flash('error') });
   });
@@ -30,9 +27,15 @@ router.post(
     res.redirect('/');
   });
 
-  router.get('/intranet', (req, res, next) => {
-    console.log(req.user);
-    res.render('private/intranet', { message: req.flash('error') });
-  });
+/* Sign Up routes */
+router.get('/signup', (req, res, next) => {
+  console.log('signing up')
+  res.render('public/sign-up', { message: req.flash('error') });
+});
+
+router.post('/signup', (req, res, next) => {
+  console.log(req.body);
+  
+});
 
 module.exports = router;
