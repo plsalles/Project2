@@ -107,11 +107,23 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 
 
-const index = require('./routes/index');
+const index = require('./routes/public/index');
 app.use('/', index);
-const auth = require('./routes/auth.routes');
+const auth = require('./routes/public/auth.routes');
 app.use('/', auth);
 
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+    return;
+  }
 
+  res.redirect('/login');
+});
+
+const pacienteRoutes = require('./routes/private/paciente.routes');
+app.use('/', pacienteRoutes);
+// const medicoRoutes = require('./routes/public/auth.routes');
+// app.use('/', auth);
 
 module.exports = app;

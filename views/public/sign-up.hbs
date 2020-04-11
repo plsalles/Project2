@@ -1,0 +1,21 @@
+<div>
+  <form action="" method="POST">
+    <input type="text" name="name" placeholder="Digite o nome completo">
+    <input type="text" name="username" placeholder="Digite o nome de usuário">
+    <input type="password" name="password" placeholder="Digite a senha">
+    <input type="text" name="email" placeholder="Digite o seu email">
+    <div>
+      <h3>Este usuário é referente a qual opção abaixo?</h1>
+      <button id='medico-sign-up-buttom' type="button">Médico</button>
+      <button id='paciente-sign-up-buttom' type="button">Paciente</button>
+    </div>       
+    <div id ='addition-inputs'></div>
+  </form>
+  <div>
+    {{#if errorMessage}}
+      <span>{{errorMessage}}</span>
+    {{/if}}
+  </div>
+</div>
+
+<script src="/javascripts/signUp.js"></script>
