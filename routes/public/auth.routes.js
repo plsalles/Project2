@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Cidade = require('../../models/Cidade');
 const User = require('../../models/User');
 const Paciente = require('../../models/Paciente');
 const bcrypt = require('bcrypt');
@@ -29,7 +30,6 @@ router.post(
 
 /* Sign Up routes */
 router.get('/signup', (req, res, next) => {
-  console.log('signing up')
   res.render('public/sign-up', { message: req.flash('error') });
 });
 
