@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./models/User');
 const Paciente = require('./models/Paciente');
 const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
@@ -13,30 +14,33 @@ mongoose
   });
 
 
-  const firstPaciente = {
-    data: '28-09-1985',
-    email: 'plsalles@gmail.com',
-    cpf: 33401203827,
-    endereco: { logradouro: 'Rua Abagiba', numero: 838, bairro: 'Saude', cidade:'Sao Paulo',estado:'SP', cep: '04294000', pais:'Brasil'},
-    medicos: [],
-    user: '5e91c39fd36f6f0ddc9cd950',
+const user = {
+  username: 'Joao',
+  password: '12345',
+  role: 'PACIENTE',
 };
-
 
 let hashPassword;
 
-if (firstPaciente.password) {
-  const saltRouds = 10;
-  const salt = bcrypt.genSaltSync(saltRouds);
-  hashPassword = bcrypt.hashSync(firstUser.password, salt);
+if (user.password) {
+const saltRouds = 10;
+const salt = bcrypt.genSaltSync(saltRouds);
+hashPassword = bcrypt.hashSync(user.password, salt);
 }
 
-firstPaciente.password = hashPassword;
-console.log(firstPaciente);
-const paciente = new Paciente(firstPaciente).save()
-                      .then(data => console.log(data))
-                      .catch(error => console.error.log(error));
-console.log(paciente);
-
-
-
+user.password = hashPassword;
+const createdUser = new User(user).save()
+                    .then(createdUser => {
+                      const paciente = {
+                        data: '30-12-1990',
+                        email: 'joao@gmail.com',
+                        cpf: 33133133127,
+                        endereco: { logradouro: 'Rua Teste', numero: 100, bairro: 'Tatuape', cidade:'Sao Paulo',estado:'SP', cep: '04294000', pais:'Brasil'},
+                        medicos: [],
+                        user: createdUser._id,
+                      }
+                      new Paciente(paciente).save()
+                                            .then(data => console.log(data))
+                                            .catch(error => console.log(error));
+                      })
+                    .catch(error => console.log(error));
