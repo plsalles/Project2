@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
     const formContainer = document.getElementById('addition-inputs');
     formContainer.innerHTML = `
       <input type="text" name="role" value="MEDICO" hidden>
-      <input type="text" name="CRM" placeholder="Digite seu CRM">
+      <input type="text" name="crm" placeholder="Digite seu CRM">
       <div>
         <h3>Principal Endereço de endereço de atendimento</h3>
         <input type="text" name="cep" placeholder="Digite seu CEP">
@@ -40,7 +40,7 @@ window.addEventListener('load', () => {
           <option value="SP">SP</option>
           <option value="TO">TO</option>
         </select>
-        <input type="text" name="Numero" placeholder="Digite o número do endereço">
+        <input type="text" name="numero" placeholder="Digite o número do endereço">
       </div>
       <button  type="submit">Finalizar Cadastro</button>
       `
@@ -50,7 +50,7 @@ window.addEventListener('load', () => {
     const formContainer = document.getElementById('addition-inputs');
     formContainer.innerHTML = `
       <input type="text" name="role" value="PACIENTE" hidden>
-      <input type="text" name="CPF" placeholder="Digite seu CPF">
+      <input type="text" name="cpf" placeholder="Digite seu CPF">
       <div>
         <h3>Principal Endereço de endereço do paciente</h3>
         <input type="text" name="cep" placeholder="Digite seu CEP">
@@ -86,7 +86,7 @@ window.addEventListener('load', () => {
           <option value="SP">SP</option>
           <option value="TO">TO</option>
         </select>
-        <input type="text" name="Numero" placeholder="Digite o número do endereço">
+        <input type="text" name="numero" placeholder="Digite o número do endereço">
       </div>
       <div>
       <h3>Médico de confiança (opcional)</h3>
