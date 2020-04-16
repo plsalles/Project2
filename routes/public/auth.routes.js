@@ -74,4 +74,10 @@ router.post('/signup', async (req, res, next) => {
 
 });
 
+/* Sign Up routes */
+router.get('/dados', async (req, res, next) => {
+
+  res.render('private/paciente/dados', { message: req.flash('error') });
+});
+
 module.exports = router;

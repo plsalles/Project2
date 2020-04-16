@@ -1,0 +1,105 @@
+<nav class="nav-home">
+  <div class="nav-left">
+    <img src="/images/logo.jpg" alt="">
+    <h1>Portal IronMed</h1>
+  </div>
+</nav>
+<section class="container-dados">
+  <div>
+    <form id="form-dados-paciente" action="/signup" method="POST">
+      <div>
+        <div>
+          <label for="name">Nome</label><br>
+          <input type="text" name="name" >
+        </div>
+        <div>
+          <label for="username">Username</label><br>
+          <input type="text" name="username" >
+        </div>
+        <div>
+        <label for="password">Senha</label><br>
+        <input type="password" name="password" >
+        </div>
+        <div>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" >
+        </div>
+        <div>
+        <label for="role">Role</label><br>
+        <input type="text" name="role" >
+        </div>
+        <div>
+        <label for="cpf">CPF</label><br>
+        <input type="text" name="cpf" >
+        </div>
+      <div>
+      </div>
+      <div>
+      <h3>Endereço</h3>
+      </div>
+      <div>
+      <label for="logradouro">Logradouro</label><br>
+      <input type="text" name="logradouro">
+      </div>
+      <div>
+      <label for="numero">Numero</label><br>
+      <input type="text" name="numero" >
+      </div>
+      <div>
+      <label for="bairro">Bairro</label><br>
+      <input type="text" name="bairro" >
+      </div>
+      <div>
+      <label for="cep">CEP</label><br>
+      <input type="text" name="cep" >
+      </div>
+      <div>
+      <label for="cidade">Cidade</label><br>
+      <input type="text" name="cidade">
+      </div>
+      <div>
+      <label for="estado">Estado</label><br>
+      <select name="estado" >
+        <option value="AC">AC</option>
+        <option value="AL">AL</option>
+        <option value="AM">AM</option>
+        <option value="AP">AP</option>
+        <option value="BA">BA</option>
+        <option value="CE">CE</option>
+        <option value="DF">DF</option>
+        <option value="ES">ES</option>
+        <option value="GO">GO</option>
+        <option value="MA">MA</option>
+        <option value="MG">MG</option>
+        <option value="MS">MS</option>
+        <option value="MT">MT</option>
+        <option value="PA">PA</option>
+        <option value="PB">PB</option>
+        <option value="PE">PE</option>
+        <option value="PI">PI</option>
+        <option value="PR">PR</option>
+        <option value="RJ">RJ</option>
+        <option value="RN">RN</option>
+        <option value="RO">RO</option>
+        <option value="RR">RR</option>
+        <option value="RS">RS</option>
+        <option value="SC">SC</option>
+        <option value="SE">SE</option>
+        <option value="SP">SP</option>
+        <option value="TO">TO</option>
+      </select>
+      </div>
+      </div>
+    </form>
+  </div>
+  <div>
+    <h1>TESTE</h1>
+  {{#if errorMessage}}
+    <span>{{errorMessage}}</span>
+  {{/if}}
+</div>
+</section>
+<footer class="footer-home">
+  <p>Footer Portal IronMed</p>
+</footer>
+{{!-- <script src="/javascripts/signUp.js"></script> --}}
