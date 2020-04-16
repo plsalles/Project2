@@ -6,57 +6,199 @@ body {
 a {
   color: #00B7FF; }
 
-.nav-home{
-  background-image: url('/images/img-nav.png');
+.nav-home {
+  background-image: url("/images/img-nav.png");
   display: flex;
+  background-image: url("/images/img-nav.png");
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height:110px;
-}
+  height: 110px; }
 
 .nav-home a {
   list-style: none;
   text-decoration: none;
   color: darkslategray;
-  border: 1px solid grey;
-  background-color: grey;
-  width: 300px;
-}
+  background-image: url("/images/img-form.png"); }
 
-.nav-left{
+.nav-left {
   display: flex;
   margin: 10px;
-  align-items: space-between;
-}
+  align-items: space-between; }
+
 .nav-home img {
   height: 50px;
-  width: auto;
-}
+  width: auto; }
 
-.container-home-middle-section{
-  background-image: url('/images/imagem2.jpg');
+.container-home-middle-section {
+  background-image: url("/images/imagem6.jpg");
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
   height: 75vh;
-  opacity: 0.5;
-}
+  opacity: 0.5; }
 
-.footer-home{
-  height: 100px;
-  background-color:mistyrose;
-}
-
+.footer-home {
+  height: 15vh;
+  width: 100%;
+  background-image: url("/images/img-nav.png"); }
 
 /* Login Page */
-
-.container-login-middle-section{
+.container-login-middle-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  height: 75vh;
-  
-}
+  height: 75vh; }
+
+#form-login {
+  margin: 30px auto;
+  width: 380px; }
+
+#form-login label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%; }
+
+#form-login input,
+#form-login button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px; }
+
+#form-login button {
+  background-image: url("/images/img-nav.png");
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%; }
+
+#form-login button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: .3s ease background; }
+
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%; }
+
+/* Sign Up Page */
+.container-sign-up {
+  margin: 30px 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-image: url("/images/img-form.png");
+  border-radius: 4px; }
+
+#form-sign-up {
+  margin: 30px auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; }
+
+#form-sign-up label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: center;
+  width: 20%;
+  height: 25px; }
+
+#form-sign-up h3 {
+  display: block; }
+
+#form-sign-up input,
+#form-sign-up button {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 5px;
+  outline: 0;
+  padding: 4px;
+  width: 300px;
+  height: 25px;
+  margin-bottom: 20px; }
+
+#form-sign-up {
+  background-image: url("/images/img-form.png");
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%; }
+
+/* Dados Paciente Up Page */
+.container-dados {
+  margin: 30px 30px;
+  display: flex;
+  flex-direction: row;
+  background-image: url("/images/img-form.png");
+  border-radius: 4px; }
+
+#form-dados-paciente {
+  margin: 30px auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+#form-dados-paciente label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: center;
+  width: 20%;
+  height: 25px; }
+
+#form-dados-paciente h3 {
+  display: block; }
+
+#form-dados-paciente input,
+#form-dados-paciente button {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 5px;
+  outline: 0;
+  padding: 4px;
+  width: 300px;
+  height: 25px;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+#form-dados-paciente {
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background; }
 
 /*# sourceMappingURL=style.css.map */

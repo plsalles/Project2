@@ -6,17 +6,17 @@
 </nav>
 <section class="container-login-middle-section">
   <div>
-  <form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Please type the username">
-    <input type="password" name="password" placeholder="Please type the password">
+  <form id="form-login" action="/login" method="POST">
+    <label for="username">Usuário</label><br>
+    <input type="text" name="username" placeholder="Digite o sue usuário">
 
-    <button type="submit">Login</button>
-
+    <label for="password">Senha</label><br>
+    <input type="password" name="password" placeholder="Digite a sua senha">
+    <button type="submit">Logar</button>
+    {{#if message}}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
    </div>
-  {{#if message}}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-  <div>
 </section>
 
 <footer class="footer-home">
