@@ -122,5 +122,8 @@ app.use((req, res, next) => {
 
 require('./routes/private')(app);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 78c355baaaf619775486d1ed0ac7efae4db4f545
 module.exports = app;
