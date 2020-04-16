@@ -122,9 +122,5 @@ app.use((req, res, next) => {
 
 require('./routes/private')(app);
 
-const pacienteRoutes = require('./routes/private/paciente.routes');
-app.use('/', pacienteRoutes);
-// const medicoRoutes = require('./routes/public/auth.routes');
-// app.use('/', auth);
 
 module.exports = app;
