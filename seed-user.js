@@ -14,9 +14,9 @@ mongoose
 
 
   const firstUser = {
-    username: 'plsalles',
+    username: 'teste123',
     password: '12345',
-    role: 'PACIENTE',
+    role: 'MEDICO',
     // email: 'plsalles@gmail.com',
     // cpf: 33401203827,
     // endereco: { logradouro: 'Rua Abagiba', numero: 838, bairro: 'Saude', cidade:'Sao Paulo',estado:'SP', cep: '04294000', pais:'Brasil'},

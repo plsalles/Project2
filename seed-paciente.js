@@ -34,7 +34,7 @@ const createdUser = new User(user).save()
                       const paciente = {
                         data: '30-12-1990',
                         email: 'joao@gmail.com',
-                        cpf: 33133133127,
+                        cpf: '33133133127',
                         endereco: { logradouro: 'Rua Teste', numero: 100, bairro: 'Tatuape', cidade:'Sao Paulo',estado:'SP', cep: '04294000', pais:'Brasil'},
                         medicos: [],
                         user: createdUser._id,

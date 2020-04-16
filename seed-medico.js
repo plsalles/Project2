@@ -37,15 +37,16 @@ const createdUser = new User(user).save()
                           const medico = {
                           name: 'David Uip',
                           email: 'david@gmail.com',
-                          crm: '111111-1',
+                          CRM: '111111-1',
                           endereco: { logradouro: 'Rua Pamplona', numero: 838, bairro: 'Jardins', cidade:'Sao Paulo',estado:'SP', cep: '04294000', pais:'Brasil'},
                           user: createdUser._id,
                           }
                           new Medico(medico).save()
                                             .then(data => console.log(data))
-                                            .catch(error => console.error.log(error));
+                                            .catch(error => console.error(error));
                       })
-                      .catch(error => console.error.log(error));
+                      .catch(error => console.error(error));
+
 
 
 
