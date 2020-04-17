@@ -9,7 +9,11 @@ const medicoSchema = new Schema({
   email: { type: String, required: true, unique: true },
   CRM: { type: String, require: true, unique: true},
   endereco: { logradouro: { type: String, require: true}, numero: {type: Number, require: true}, bairro: { type: String, require: true}, cidade: { type: String, require: true}, estado: { type: String, require: true}, cep: {type: String, require: true},pais: { type: String, require: true}},
-});
+  },
+  {
+    timestamps:true
+  }
+);
 
 const Medico = mongoose.model('Medico', medicoSchema);
 
