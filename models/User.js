@@ -6,8 +6,12 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   role: { type: String, required: true, enum: ['PACIENTE', 'MEDICO','ADMIN'], default: 'PACIENTE' },
   ativo: { type: Boolean, required: true, default: true },
-});
+  },
+  {
+    timestamps:true
+  }
+);
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = User;  
