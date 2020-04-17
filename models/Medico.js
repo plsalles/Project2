@@ -8,6 +8,7 @@ const medicoSchema = new Schema({
   name: { type: String, require:true},
   email: { type: String, required: true, unique: true },
   CRM: { type: String, require: true, unique: true},
+  especializacao: { type: String, require:true},
   endereco: { logradouro: { type: String, require: true}, numero: {type: Number, require: true}, bairro: { type: String, require: true}, cidade: { type: String, require: true}, estado: { type: String, require: true}, cep: {type: String, require: true},pais: { type: String, require: true}},
   },
   {
