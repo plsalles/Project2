@@ -17,7 +17,7 @@ router.get('/login', (req, res, next) => {
 router.post(
     '/login',
     passport.authenticate('local', {
-      successRedirect: '/intranet',
+      successRedirect: '/home',
       failureRedirect: '/login',
       failureFlash: true,
       passReqToCallback: true
@@ -36,10 +36,21 @@ router.get('/signup', async (req, res, next) => {
 });
 
 router.post('/signup', async (req, res, next) => {
-
+  console.log(req.body);
   const user = {username: req.body.username, password: req.body.password, role: req.body.role};
+  
+  let hashPassword;
+
+  if (user.password) {
+  const saltRouds = 10;
+  const salt = bcrypt.genSaltSync(saltRouds);
+  hashPassword = bcrypt.hashSync(user.password, salt);
+  }
+  user.password = hashPassword;
+  
   const roleUserPaciente = { name: req.body.name, email: req.body.email, cpf: req.body.cpf, logradouro: req.body.logradouro, bairro: req.body.bairro, cidade: req.body.cidade, estado: req.body.estado, numero: req.body.numero, medico: req.body.medico, };
-  const roleUserMedico = { name: req.body.name, email: req.body.email, crm: req.body.crm, logradouro: req.body.logradouro, bairro: req.body.bairro, cidade: req.body.cidade, estado: req.body.estado, numero: req.body.numero };
+  const roleUserMedico = { name: req.body.name, email: req.body.email, CRM: req.body.CRM, logradouro: req.body.logradouro, bairro: req.body.bairro, cidade: req.body.cidade, estado: req.body.estado, numero: req.body.numero };
+  console.log(roleUserMedico);
 
   const createdUser = new User(user).save()
                       .then(createdUser => {
@@ -74,10 +85,10 @@ router.post('/signup', async (req, res, next) => {
 
 });
 
-/* Sign Up routes */
-router.get('/dados', async (req, res, next) => {
+// /* Sign Up routes */
+// router.get('/dados', async (req, res, next) => {
 
-  res.render('private/paciente/dados', { message: req.flash('error') });
-});
+//   res.render('private/paciente/dados', { message: req.flash('error') });
+// });
 
 module.exports = router;
