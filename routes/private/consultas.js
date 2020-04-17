@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 
 
 
-router.post('/teste', async (req, res, next) => {
+router.post('/criar-consulta', async (req, res, next) => {
   try {
     const { pacienteCPF,CRM,exames,ata } = req.body
     const medicoIstance = await Medico.findOne({CRM})

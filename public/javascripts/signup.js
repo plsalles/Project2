@@ -7,7 +7,11 @@ window.addEventListener('load', () => {
       <div>
         <div>
           <label for="crm">CRM</label><br>
-          <input type="text" name="crm" placeholder="Digite seu CRM">
+          <input type="text" name="CRM" placeholder="Digite seu CRM">
+        </div>
+        <div>
+        <label for="especializacao">Especialização</label><br>
+        <input type="text" name="especializacao" placeholder="Digite a sua especialização">
         </div>
         <div>
         <h3>Endereço</h3>

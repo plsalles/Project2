@@ -11,8 +11,8 @@ router.get('/', (req, res, next) => {
     res.render('private/medico/agenda', { message: req.flash('error') });
   }
   else {
-  }  res.render('public/login', { message: req.flash('error') });
-  
+    res.render('public/login', { message: req.flash('error') });
+  }
 });
 
 module.exports = router;
