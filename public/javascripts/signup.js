@@ -67,14 +67,6 @@ window.addEventListener('load', () => {
           <input type="text" name="logradouro" value="${cepObj.street}" placeholder="Digite o nome da rua">
         </div>
         <div>
-        <label for="numero">Numero</label><br>
-        <input type="text" name="numero" placeholder="Digite o número do endereço">
-       </div>
-        <div>
-          <label for="complemento">Complemento</label><br>
-          <input type="text" name="complemento" placeholder="Digite o complemento do endereço">
-        </div>
-        <div>
           <label for="bairro">Bairro</label><br>
           <input type="text" name="bairro" value="${cepObj.neighborhood}" placeholder="Digite o nome do bairro">
         </div>
@@ -88,6 +80,10 @@ window.addEventListener('load', () => {
           ${estados}
           </select>
         </div>
+        <div>
+          <label for="numero">Numero</label><br>
+          <input type="text" name="numero" placeholder="Digite o número do endereço">
+         </div>
       </div>`
        
         console.log(cepObj)
