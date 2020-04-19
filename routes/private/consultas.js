@@ -24,7 +24,6 @@ router.get('/', (req, res, next) => {
 
 router.get('/criar-consulta', async (req, res, next) => {
   try {
-    console.log(req.user);
     const paciente = await Paciente.findOne({user:req.user._id});
     const medicosPaciente = [];
     let medico;
@@ -42,26 +41,32 @@ router.get('/criar-consulta', async (req, res, next) => {
 
 router.post('/criar-consulta', async (req, res, next) => {
   try {
-    const { _id,role} = req.user;
-    const {}
+    
     console.log(req.body);
     console.log(req.user);
-    const medicoIstance = await Medico.findOne({CRM})
+    const medicoIstance = await Medico.findOne({CRM:req.body.CRM});
+    const pacienteIstance = await Paciente.findOne({user:req.user._id});
+    const timeArray = req.body.date.split('-');
+    const date = `${timeArray[2]}${timeArray[1]}${timeArray[0]}`;
+    const novaConsulta = {paciente: req.user._id, medico:medicoIstance._id,date:req.body.date,hora:req.body.hora,exames:req.body.exames,descricao:req.body.descricao};
+    
+    
     if(!medicoIstance) throw Error('Medico Not Found')
 
-    const pacienteIstance = await Paciente.findOne({cpf:pacienteCPF})
+   
     if(!pacienteIstance) throw Error('Paciente Not Found')
-    console.log("HORA E DATA")
-    const date = moment(`${data} ${hora}`,'DD-MM-YYYY h').subtract(3,'hour')
+    // const date = moment(`${req.body.date} ${req.body.hora}`,'DD-MM-YYYY h').subtract(3,'hour')
     console.log(date)
-
-    const consultaInstace = new Consulta({paciente:pacienteIstance._id,medico:medicoIstance._id,CRM,date,exames,ata})
+    console.log(novaConsulta)
+    const consultaInstace = new Consulta(novaConsulta);
 
     await consultaInstace.save()
-    return res.status(200).json(consultaInstace)
+    // return res.status(200).json(consultaInstace)
+    res.redirect('/home');
   } catch (error) {
     console.log(error)
-    return res.status(500).send(error)
+    // return res.status(500).send(error)
+    res.redirect('/consultas/criar-consulta');
   }
 });
 
