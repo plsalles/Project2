@@ -50,7 +50,7 @@ router.post('/signup', async (req, res, next) => {
   
   const roleUserPaciente = { name: req.body.name, email: req.body.email, cpf: req.body.cpf, logradouro: req.body.logradouro, bairro: req.body.bairro, cidade: req.body.cidade, estado: req.body.estado, numero: req.body.numero, medico: req.body.medico, };
   const roleUserMedico = { name: req.body.name, email: req.body.email, CRM: req.body.CRM, logradouro: req.body.logradouro, bairro: req.body.bairro, cidade: req.body.cidade, estado: req.body.estado, numero: req.body.numero };
-  console.log(roleUserMedico);
+  
 
   const createdUser = new User(user).save()
                       .then(createdUser => {

@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
   document.getElementById('medico-sign-up-buttom').addEventListener('click', function (event) {
     const formContainer = document.getElementById('addition-inputs');
     formContainer.innerHTML = `
-      <input type="text" name="role" value="MEDICO" disabled style="display:none">
+      <input type="text" name="role" value="MEDICO" style="display:none">
       <div>
         <div>
           <label for="crm">CRM</label><br>
@@ -22,11 +22,11 @@ window.addEventListener('load', () => {
   document.getElementById('paciente-sign-up-buttom').addEventListener('click', function (event) {
     const formContainer = document.getElementById('addition-inputs');
     formContainer.innerHTML = `
-      <input type="text" name="role" value="PACIENTE" disabled style="display:none">
+      <input type="text" name="role" value="PACIENTE" style="display:none">
       </div>
         <div>
           <label for="cpf">CPF</label><br>
-          <input type="text" name="CPF" placeholder="Digite seu CPF">
+          <input type="text" name="cpf" placeholder="Digite seu CPF">
         </div>
       </div>
       <h3>Médico de confiança (opcional)</h3>
