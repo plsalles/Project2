@@ -1,3 +1,8 @@
+
+
+
+
+
 const express = require('express');
 const router = express.Router();
 const { Medico,Paciente,Consulta } = require('../../models')
@@ -8,7 +13,7 @@ router.get('/', (req, res, next) => {
   const { role } = req.user
   if(role==='PACIENTE'){
     res.render('private/paciente/consultas', { message: req.flash('error') });
-  } 
+  }
   else if(role ==='MEDICO'){
     res.render('private/medico/consultas', { message: req.flash('error') });
   }
@@ -17,9 +22,30 @@ router.get('/', (req, res, next) => {
   }
 });
 
+router.get('/criar-consulta', async (req, res, next) => {
+  try {
+    console.log(req.user);
+    const paciente = await Paciente.findOne({user:req.user._id});
+    const medicosPaciente = [];
+    let medico;
+    for (let i = 0; i < paciente.medicos.length; i++){
+      medico = await Medico.findOne({_id:paciente.medicos[i]});
+      medicosPaciente.push(medico);
+
+    }
+    res.render('private/paciente/criar-consulta', {medicosPaciente});
+  } catch (error) {
+    console.log(error)
+  }
+
+});
+
 router.post('/criar-consulta', async (req, res, next) => {
   try {
-    const { pacienteCPF,CRM,data,hora,exames,ata } = req.body
+    const { _id,role} = req.user;
+    const {}
+    console.log(req.body);
+    console.log(req.user);
     const medicoIstance = await Medico.findOne({CRM})
     if(!medicoIstance) throw Error('Medico Not Found')
 
@@ -40,6 +66,8 @@ router.post('/criar-consulta', async (req, res, next) => {
 });
 
 
+
+
 router.post('/realizadas', async (req, res, next) => {
   try {
     console.log(req.body)
@@ -47,15 +75,89 @@ router.post('/realizadas', async (req, res, next) => {
     if(role ==='MEDICO'){
       const medicoIstance = await Medico.findOne({user:_id})
       if(!medicoIstance) throw Error('Medico Not Found')
-      const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizada'}).sort({date:-1}); 
+      const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizada'}).sort({date:-1});
 
       return res.status(200).send(consultas)
-  
+
     }
     else if(role ==='PACIENTE'){
       const pacienteIstance = await Paciente.findOne({user:_id})
       if(!pacienteIstance) throw Error('Paciente Not Found')
-      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).sort({date:-1}); 
+      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).sort({date:-1});
+      return res.status(200).send(consultas)
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
+
+router.get('/realizadas', async (req, res, next) => {
+  try {
+    console.log(req.user)
+    const { role,_id } = req.user
+    if(role ==='MEDICO'){
+      const medicoIstance = await Medico.findOne({user:_id})
+      if(!medicoIstance) throw Error('Medico Not Found')
+      const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizada'}).sort({date:-1});
+
+      return res.status(200).send(consultas)
+
+    }
+    else if(role ==='PACIENTE'){
+      const pacienteIstance = await Paciente.findOne({user:_id})
+      if(!pacienteIstance) throw Error('Paciente Not Found')
+      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).sort({date:-1});
+      return res.status(200).send(consultas)
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
+
+
+
+router.post('/realizar', async (req, res, next) => {
+  try {
+    console.log(req.body)
+    const { role,_id } = req.body
+    if(role ==='MEDICO'){
+      const medicoIstance = await Medico.findOne({user:_id})
+      if(!medicoIstance) throw Error('Medico Not Found')
+      const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizar'}).sort({date:-1});
+
+      return res.status(200).send(consultas)
+
+    }
+    else if(role ==='PACIENTE'){
+      const pacienteIstance = await Paciente.findOne({user:_id})
+      if(!pacienteIstance) throw Error('Paciente Not Found')
+      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizar'}).sort({date:-1});
+      return res.status(200).send(consultas)
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
+
+router.get('/realizar', async (req, res, next) => {
+  try {
+    console.log(req.user)
+    const { role,_id } = req.user
+    if(role ==='MEDICO'){
+      const medicoIstance = await Medico.findOne({user:_id})
+      if(!medicoIstance) throw Error('Medico Not Found')
+      const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizar'}).sort({date:-1});
+
+      return res.status(200).send(consultas)
+
+    }
+    else if(role ==='PACIENTE'){
+      const pacienteIstance = await Paciente.findOne({user:_id})
+      if(!pacienteIstance) throw Error('Paciente Not Found')
+      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizar'}).sort({date:-1});
       return res.status(200).send(consultas)
     }
   } catch (error) {
