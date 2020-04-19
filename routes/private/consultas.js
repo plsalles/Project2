@@ -1,18 +1,19 @@
-
-
-
-
-
 const express = require('express');
 const router = express.Router();
 const { Medico,Paciente,Consulta } = require('../../models')
-const moment = require('moment')
+const moment = require('moment');
+const axios = require('axios');
 
+// Rota Consultas para usuário logado
+router.get('/', async (req, res, next) => {
+  const { role } = req.user;
+  const consultasRealizadas = await axios.get(`http://localhost:3000/consultas/realizadas`);
+  const consultasRealizar = await axios.get(`http://localhost:3000/consultas/realizadas`);
 
-router.get('/', (req, res, next) => {
-  const { role } = req.user
   if(role==='PACIENTE'){
-    res.render('private/paciente/consultas', { message: req.flash('error') });
+    console.log(consultasRealizadas)
+    console.log(consultasRealizar)
+    res.render('private/paciente/consultas', consultasRealizadas,consultasRealizar,{ message: req.flash('error') });
   }
   else if(role ==='MEDICO'){
     res.render('private/medico/consultas', { message: req.flash('error') });
@@ -66,7 +67,51 @@ router.post('/criar-consulta', async (req, res, next) => {
   }
 });
 
+//Rota API para buscar todas as consutlas realizadas para um user
+router.get('/realizadas', async (req, res, next) => {
+  try {
+    console.log(req.user)
+    const { role,_id } = req.user
+    if(role ==='MEDICO'){
+      const medicoIstance = await Medico.findOne({user:_id})
+      if(!medicoIstance) throw Error('Medico Not Found')
+      const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizada'}).sort({date:-1});
+      return res.status(200).send(consultas)
+    }
+    else if(role ==='PACIENTE'){
+      const pacienteIstance = await Paciente.findOne({user:_id})
+      if(!pacienteIstance) throw Error('Paciente Not Found')
+      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).sort({date:-1});
+      return res.status(200).send(consultas)
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
 
+//Rota API para buscar todas as consultas a realizar para um user
+router.get('/realizar', async (req, res, next) => {
+  try {
+    console.log(req.user)
+    const { role,_id } = req.user
+    if(role ==='MEDICO'){
+      const medicoIstance = await Medico.findOne({user:_id})
+      if(!medicoIstance) throw Error('Medico Not Found')
+      const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizada'}).sort({date:-1});
+      return res.status(200).send(consultas)
+    }
+    else if(role ==='PACIENTE'){
+      const pacienteIstance = await Paciente.findOne({user:_id})
+      if(!pacienteIstance) throw Error('Paciente Not Found')
+      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).sort({date:-1});
+      return res.status(200).send(consultas)
+    }
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
 
 
 router.post('/realizadas', async (req, res, next) => {
