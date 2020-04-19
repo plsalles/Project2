@@ -206,4 +206,12 @@ a {
   text-transform: uppercase;
   transition: .3s ease background; }
 
+.container-consultas-middle-section {
+  height: 700px;
+  display: flex;
+  justify-content: center; }
+
+.container-consultas-middle-section img {
+  opacity: 0.3; }
+
 /*# sourceMappingURL=style.css.map */

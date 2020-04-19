@@ -46,18 +46,14 @@ router.post('/criar-consulta', async (req, res, next) => {
     console.log(req.user);
     const medicoIstance = await Medico.findOne({CRM:req.body.CRM});
     const pacienteIstance = await Paciente.findOne({user:req.user._id});
-    const timeArray = req.body.date.split('-');
-    const date = `${timeArray[2]}${timeArray[1]}${timeArray[0]}`;
-    const novaConsulta = {paciente: req.user._id, medico:medicoIstance._id,date:req.body.date,hora:req.body.hora,exames:req.body.exames,descricao:req.body.descricao};
+    const dateMoment = moment(`${req.body.date} ${req.body.hora}`,'DD-MM-YYYY h').subtract(3,'hour')
+    const novaConsulta = {paciente: req.user._id, medico:medicoIstance._id,date:dateMoment,exames:req.body.exames,descricao:req.body.descricao};
     
     
     if(!medicoIstance) throw Error('Medico Not Found')
 
    
     if(!pacienteIstance) throw Error('Paciente Not Found')
-    // const date = moment(`${req.body.date} ${req.body.hora}`,'DD-MM-YYYY h').subtract(3,'hour')
-    console.log(date)
-    console.log(novaConsulta)
     const consultaInstace = new Consulta(novaConsulta);
 
     await consultaInstace.save()
