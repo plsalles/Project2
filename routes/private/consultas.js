@@ -55,7 +55,7 @@ router.post('/realizadas', async (req, res, next) => {
     else if(role ==='PACIENTE'){
       const pacienteIstance = await Paciente.findOne({user:_id})
       if(!pacienteIstance) throw Error('Paciente Not Found')
-      const consultas = await Consulta.find({medico:pacienteIstance._id,status:'Realizada'}).sort({date:-1}); 
+      const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).sort({date:-1}); 
       return res.status(200).send(consultas)
     }
   } catch (error) {
