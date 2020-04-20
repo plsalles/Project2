@@ -23,14 +23,16 @@
       <td>Exames</td>
       <td>Status</td>
     </tr>
-    <tr>
-      <td>25-04-2020</td>
-      <td>15:00</td>
-      <td>Dra. Selma Soriano</td>
-      <td>Rotina</td>
-      <td>Hemograma</td>
-      <td>A Realizar</td>
-    </tr>
+    {{#each consultasRealizar}}
+      <tr>
+        <td>{{this.date}}</td>
+        <td>{{this.hora}}</td>
+        <td>{{this.medico.name}}</td>
+        <td>{{this.descricao}}</td>
+        <td>{{this.exames}}</td>
+        <td>{{this.status}}</td>
+      </tr>
+    {{/each}}
   </table>
   <h3>Consultas realizadas</h3>
   <table>
@@ -42,14 +44,16 @@
       <td>Exames</td>
       <td>Status</td>
     </tr>
-    <tr>
-      <td>25-04-2020</td>
-      <td>15:00</td>
-      <td>Dra. Selma Soriano</td>
-      <td>Rotina</td>
-      <td>Hemograma</td>
-      <td>A Realizar</td>
-    </tr>
+    {{#each consultasRealizadas}}
+      <tr>
+        <td>{{this.date}}</td>
+        <td>{{this.hora}}</td>
+        <td>{{this.medico.name}}</td>
+        <td>{{this.descricao}}</td>
+        <td>{{this.exames}}</td>
+        <td>{{this.status}}</td>
+      </tr>
+    {{/each}}
       </table>
 </section>
 
