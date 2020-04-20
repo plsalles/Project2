@@ -95,11 +95,7 @@ router.get('/realizar', async (req, res, next) => {
     if(role ==='MEDICO'){
       const medicoIstance = await Medico.findOne({user:_id})
       if(!medicoIstance) throw Error('Medico Not Found')
-<<<<<<< HEAD
       const consultas = await Consulta.find({medico:medicoIstance.user,status:'Realizar'}).populate('paciente').sort({date:-1});
-=======
-      const consultas = await Consulta.find({medico:medicoIstance.user,status:'Realizar'}).sort({date:-1});
->>>>>>> f4ae2e7... Pagina consutlas paciente listando consultas realizadas e a realizar, porem precisando segmentar a consu8tla API para nao quebrar a proteção das rotas privadas
       return res.status(200).send(consultas)
     }
     else if(role ==='PACIENTE'){
@@ -139,34 +135,6 @@ router.post('/realizadas', async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
-=======
-// router.get('/realizadas', async (req, res, next) => {
-//   try {
-//     console.log(req.user)
-//     const { role,_id } = req.user
-//     if(role ==='MEDICO'){
-//       const medicoIstance = await Medico.findOne({user:_id})
-//       if(!medicoIstance) throw Error('Medico Not Found')
-//       const consultas = await Consulta.find({medico:medicoIstance._id,status:'Realizada'}).sort({date:-1});
-
-//       return res.status(200).send(consultas)
-
-//     }
-//     else if(role ==='PACIENTE'){
-//       const pacienteIstance = await Paciente.findOne({user:_id})
-//       if(!pacienteIstance) throw Error('Paciente Not Found')
-//       const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).sort({date:-1});
-//       return res.status(200).send(consultas)
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     res.status(500).json(error)
-//   }
-// });
-
-
->>>>>>> f4ae2e7... Pagina consutlas paciente listando consultas realizadas e a realizar, porem precisando segmentar a consu8tla API para nao quebrar a proteção das rotas privadas
 
 router.post('/realizar', async (req, res, next) => {
   try {
@@ -192,32 +160,5 @@ router.post('/realizar', async (req, res, next) => {
     res.status(500).json(error)
   }
 });
-<<<<<<< HEAD
-=======
-
-// router.get('/realizar', async (req, res, next) => {
-//   try {
-//     console.log(req.user)
-//     const { role,_id } = req.user
-//     if(role ==='MEDICO'){
-//       const medicoIstance = await Medico.findOne({user:_id})
-//       if(!medicoIstance) throw Error('Medico Not Found')
-//       const consultas = await Consulta.find({medico:medicoIstance.user,status:'Realizar'}).sort({date:-1});
-
-//       return res.status(200).send(consultas)
-
-//     }
-//     else if(role ==='PACIENTE'){
-//       const pacienteIstance = await Paciente.findOne({user:_id})
-//       if(!pacienteIstance) throw Error('Paciente Not Found')
-//       const consultas = await Consulta.find({paciente:pacienteIstance.user,status:'Realizar'}).sort({date:-1});
-//       return res.status(200).send(consultas)
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     res.status(500).json(error)
-//   }
-// });
->>>>>>> f4ae2e7... Pagina consutlas paciente listando consultas realizadas e a realizar, porem precisando segmentar a consu8tla API para nao quebrar a proteção das rotas privadas
 
 module.exports = router;
