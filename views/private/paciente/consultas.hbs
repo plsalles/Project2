@@ -14,50 +14,20 @@
 <section class="container-consultas-middle-section" role="PACIENTE" user="{{user._id}}">
   <a href="/consultas/criar-consulta">Criar consulta</a>
   <h3>Consultas futuras</h3>
-  <table class="inicio-tableta-consultas-realizar" paciente>
-    <tr class="table-title">
-      <td>Data</td>
-      <td>Hora</td>
-      <td>Médico</td>
-      <td>Descrição</td>
-      <td>Exames</td>
-      <td>Status</td>
-    </tr>
-    {{#each consultasRealizar}}
-      <tr class="consultasRealizar" id="{{this.id}}">
-        <td>{{this.date}}</td>
-        <td>{{this.hora}}</td>
-        <td>{{this.medico.name}}</td>
-        <td>{{this.descricao}}</td>
-        <td>{{this.exames}}</td>
-        <td>{{this.status}}</td>
-      </tr>
-    {{/each}}
+  <table id="inicio-tableta-consultas-realizar">
   </table>
-  <h3>Consultas realizadas</h3>
-  <table class="inicio-tableta-consultas-realizar">
+<h3>Consultas realizadas</h3>
+<table id="inicio-tableta-consultas-realizadas">
     <tr class="table-title">
-      <td>Data</td>
-      <td>Hora</td>
-      <td>Médico</td>
-      <td>Descrição</td>
-      <td>Exames</td>
-      <td>Status</td>
-    </tr>
-    {{#each consultasRealizadas}}
-      <tr class="consultasRealizadas" id="{{this.id}}">
-        <td>{{this.date}}</td>
-        <td>{{this.hora}}</td>
-        <td>{{this.medico.name}}</td>
-        <td>{{this.descricao}}</td>
-        <td>{{this.exames}}</td>
-        <td>{{this.status}}</td>
-      </tr>
-    {{/each}}
-      </table>
+    <td>Data</td>
+    <td>Hora</td>
+    <td>Médico</td>
+    <td>Descrição</td>
+    <td>Exames</td>
+    <td>Status</td>
+  </tr>
+</table>
 </section>
-
 <footer class="footer-home">
-  
 </footer>
 <script src="/javascripts/consultas-paciente.js"></script>

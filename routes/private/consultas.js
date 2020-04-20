@@ -8,9 +8,9 @@ const axios = require('axios');
 router.get('/', async (req, res, next) => {
   const { role } = req.user;
   const user = req.user;
-  
+  const errorMessage = {message: req.flash('error')};
   if(role==='PACIENTE'){
-    res.render('private/paciente/consultas', { message: req.flash('error') });
+    res.render('private/paciente/consultas', {user, errorMessage });
   }
   else if(role ==='MEDICO'){
     res.render('private/medico/consultas', consultas);
@@ -44,7 +44,7 @@ router.post('/criar-consulta', async (req, res, next) => {
     console.log(req.user);
     const medicoIstance = await Medico.findOne({CRM:req.body.CRM});
     const pacienteIstance = await Paciente.findOne({user:req.user._id});
-    const dateMoment = moment(`${req.body.date} ${req.body.hora}`,'DD-MM-YYYY h').subtract(3,'hour')
+    const dateMoment = moment(`${req.body.date} ${req.body.hora}`,'YYYY-MM-DD h').subtract(3,'hour')
     const novaConsulta = {paciente: req.user._id, medico:medicoIstance._id,date:dateMoment,exames:req.body.exames,descricao:req.body.descricao};
     
     
