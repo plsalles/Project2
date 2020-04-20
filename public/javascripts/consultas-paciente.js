@@ -100,29 +100,4 @@ axios.get(`http://localhost:3000/consultas/realizadas?_id=${userId}&role=${role}
 
 
 
-/*
 
-consultasRealizar.forEach(element => {
-const date = element.date.split('T')[0];
-const time = element.date.split(':00.')[1];
-const arrayDate = [];
-date[0].split('-').forEach(e => {
-  arrayDate.unshift(e);
-});
-    
-element.date = arrayDate.join('-');
-element.hora = time[0];
-});
-
-
-consultasRealizadas.forEach(element => {
-const date = element.date.split('T');
-const time = date[1].split(':00.');
-  element.date = date[0];
-  element.hora = time[0];
-});
-
-
-
-
-*/
