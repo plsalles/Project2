@@ -11,10 +11,10 @@
     <a href="/logout">Logout</a>
   </div>
 </nav>
-<section class="container-consultas-middle-section">
+<section class="container-consultas-middle-section" role="PACIENTE" user="{{user._id}}">
   <a href="/consultas/criar-consulta">Criar consulta</a>
   <h3>Consultas futuras</h3>
-  <table>
+  <table class="inicio-tableta-consultas-realizar" paciente>
     <tr class="table-title">
       <td>Data</td>
       <td>Hora</td>
@@ -24,7 +24,7 @@
       <td>Status</td>
     </tr>
     {{#each consultasRealizar}}
-      <tr>
+      <tr class="consultasRealizar" id="{{this.id}}">
         <td>{{this.date}}</td>
         <td>{{this.hora}}</td>
         <td>{{this.medico.name}}</td>
@@ -35,7 +35,7 @@
     {{/each}}
   </table>
   <h3>Consultas realizadas</h3>
-  <table>
+  <table class="inicio-tableta-consultas-realizar">
     <tr class="table-title">
       <td>Data</td>
       <td>Hora</td>
@@ -45,7 +45,7 @@
       <td>Status</td>
     </tr>
     {{#each consultasRealizadas}}
-      <tr>
+      <tr class="consultasRealizadas" id="{{this.id}}">
         <td>{{this.date}}</td>
         <td>{{this.hora}}</td>
         <td>{{this.medico.name}}</td>
@@ -60,3 +60,4 @@
 <footer class="footer-home">
   
 </footer>
+<script src="/javascripts/consultas-paciente.js"></script>
