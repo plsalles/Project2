@@ -28,7 +28,7 @@ let htmlConsultaRealizadas = `
 
 
 
-axios.get(`http://localhost:3000/consultas/realizar?_id=${userId}&role=${role}`)
+axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${role}`)
 .then(data => {
   const tabela = document.getElementById('inicio-tableta-consultas-realizar');
   const consultasRealizar = data.data;
@@ -63,7 +63,7 @@ axios.get(`http://localhost:3000/consultas/realizar?_id=${userId}&role=${role}`)
 .catch(error => console.log(error));
 
 
-axios.get(`http://localhost:3000/consultas/realizadas?_id=${userId}&role=${role}`)
+axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${role}`)
       .then(data => {
         const tabela = document.getElementById('inicio-tableta-consultas-realizadas');
         const consultasRealizadas = data.data;
