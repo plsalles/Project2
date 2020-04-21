@@ -111,14 +111,14 @@ const auth = require('./routes/public/auth.routes');
 app.use('/', auth);
 
 
-app.use((req, res, next) => {
-  if (req.isAuthenticated()) {
-    next();
-    return;
-  }
+// app.use((req, res, next) => {
+//   if (req.isAuthenticated()) {
+//     next();
+//     return;
+//   }
 
-  res.redirect('/login');
-});
+//   res.redirect('/login');
+// });
 
 require('./routes/private')(app);
 

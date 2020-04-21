@@ -209,9 +209,14 @@ a {
 .container-consultas-middle-section {
   height: 700px;
   display: flex;
-  justify-content: center; }
+  flex-direction: column;
+  font-size: 20px; }
 
-.container-consultas-middle-section img {
-  opacity: 0.3; }
+.container-consultas-middle-section table, td, tr {
+  border: 1px solid black;
+  text-align: center; }
+
+.table-title td {
+  font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */
