@@ -73,7 +73,7 @@ passport.use(
     User.findOne({ username })
       .then(user => {
         if (!user || !bcrypt.compareSync(password, user.password)) {
-          return callback(null, false, { message: 'Incorrect username or password' });
+          return callback(null, false, { message: 'Usuário ou senha incorretos' });
         }
         callback(null, user);
       })
