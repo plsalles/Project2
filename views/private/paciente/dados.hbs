@@ -13,31 +13,31 @@
 </nav>
 <section class="container-dados">
   <div>
-    <form id="form-dados-paciente" action="/signup" method="POST">
+    <form id="form-dados-paciente" action="/dados/" method="POST">
       <div>
         <div>
           <label for="name">Nome</label><br>
-          <input type="text" name="name" >
+          <input type="text" name="name" value={{paciente.name}}>
         </div>
         <div>
           <label for="username">Username</label><br>
-          <input type="text" name="username" >
+          <input type="text" name="username" value="{{user.username}}">
         </div>
         <div>
         <label for="password">Senha</label><br>
-        <input type="password" name="password" >
+        <input type="password" name="password" placeholder="Digite a nova senha caso queira trocá-la">
         </div>
         <div>
         <label for="email">Email</label><br>
-        <input type="text" name="email" >
+        <input type="text" name="email" value={{paciente.email}}>
         </div>
         <div>
         <label for="role">Role</label><br>
-        <input type="text" name="role" >
+        <input type="text" name="role" value={{user.role}} disabled>
         </div>
         <div>
         <label for="cpf">CPF</label><br>
-        <input type="text" name="cpf" >
+        <input type="text" name="cpf" value="{{paciente.cpf}}">
         </div>
       <div>
       </div>
@@ -46,23 +46,27 @@
       </div>
       <div>
       <label for="logradouro">Logradouro</label><br>
-      <input type="text" name="logradouro">
+      <input type="text" name="logradouro" value={{paciente.endereco.logradouro}}>
       </div>
       <div>
       <label for="numero">Numero</label><br>
-      <input type="text" name="numero" >
+      <input type="text" name="numero" value={{paciente.endereco.numero}}>
+      </div>
+      <div>
+      <label for="complemento">Complemento</label><br>
+      <input type="text" name="complemento" value={{paciente.endereco.complemento}}>
       </div>
       <div>
       <label for="bairro">Bairro</label><br>
-      <input type="text" name="bairro" >
+      <input type="text" name="bairro" value={{paciente.endereco.bairro}}>
       </div>
       <div>
       <label for="cep">CEP</label><br>
-      <input type="text" name="cep" >
+      <input type="text" name="cep" value={{paciente.endereco.cep}}>
       </div>
       <div>
       <label for="cidade">Cidade</label><br>
-      <input type="text" name="cidade">
+      <input type="text" name="cidade" value={{paciente.endereco.cidade}}>
       </div>
       <div>
       <label for="estado">Estado</label><br>
@@ -96,6 +100,7 @@
         <option value="TO">TO</option>
       </select>
       </div>
+      <button type="submit">Atualizar dados</button>
       </div>
     </form>
   </div>

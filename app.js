@@ -73,7 +73,7 @@ passport.use(
     User.findOne({ username })
       .then(user => {
         if (!user || !bcrypt.compareSync(password, user.password)) {
-          return callback(null, false, { message: 'Incorrect username or password' });
+          return callback(null, false, { message: 'Usuário ou senha incorretos' });
         }
         callback(null, user);
       })
@@ -109,16 +109,18 @@ const index = require('./routes/public/index');
 app.use('/', index);
 const auth = require('./routes/public/auth.routes');
 app.use('/', auth);
+const api = require('./routes/api/api.routes');
+app.use('/', api);
 
 
-// app.use((req, res, next) => {
-//   if (req.isAuthenticated()) {
-//     next();
-//     return;
-//   }
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+    return;
+  }
 
-//   res.redirect('/login');
-// });
+  res.redirect('/login');
+});
 
 require('./routes/private')(app);
 

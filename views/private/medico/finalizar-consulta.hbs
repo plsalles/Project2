@@ -1,0 +1,58 @@
+<nav class="nav-home">
+  <div class="nav-left">
+    <img src="/images/logo-nav.jpg" alt="">
+    <h1>Portal IronMedic</h1>
+  </div>
+  <div>
+    <a href="/home">Home</a>
+    <a href="/agenda">Agenda</a>
+    <a href="/consultas">Consultas</a>
+    <a href="/dados">Dados</a>
+    <a href="/logout">Logout</a>
+  </div>
+</nav>
+<section class="container-consultas-middle-section">
+  <div>
+    <form id="form-sign-up" action="/consultas/finalizar" method="POST">
+    <input type="text" name="_id" value="{{_id}}" style="display:none">
+    <div>
+      <select name="status" id="">
+        <option value="Realizada">Realizada</option>
+        <option value="Realizar">Realizar</option>
+      </select>
+    </div>
+    <div>
+      <label for="date">Data</label><br>
+      <input type="date" name="date" value="{{date}}" disabled>
+      </div>
+    <div>
+      <label for="hora">Hora</label><br>
+      <input type="time" name="hora" value="{{hora}}" disabled>
+    </div>
+    <div>
+      <label for="descricao">Descrição</label><br>
+      <input type="text" name="descricao" value="{{descricao}}" disabled>
+    </div>
+    <div>
+      <label for="exames">Exames</label><br>
+      <input type="text" name="exames" value="{{exames}}">
+    </div>
+   <div>
+      <label for="exames">ATA</label><br>
+      <input type="text" name="ata" size="500">
+    </div>
+    <div>
+      <button type="submit">Finalizar consulta</button>
+    </div>
+    </form>
+  </div>
+  <div>
+    {{#if errorMessage}}
+      <span>{{errorMessage}}</span>
+    {{/if}}
+  </div>
+</section>
+<footer class="footer-home">
+</footer>
+
+
