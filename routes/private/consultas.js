@@ -12,7 +12,6 @@ router.get('/', async (req, res, next) => {
     res.render('private/paciente/consultas', {user, errorMessage });
   }
   else {
-    console.log(req.user)
     res.render('private/medico/consultas', {user, errorMessage });
   }
   
@@ -25,7 +24,7 @@ router.get('/editar/realizar/:id', async (req, res, next) => {
   const idConsulta = req.params.id;
   const errorMessage = {message: req.flash('error')};
   const consulta = await await Consulta.findOne({_id: idConsulta }).populate('medico').populate('paciente');
-  console.log(consulta)
+
   // const dataMoment = moment(`${consulta.date}`,'YYYY-MM-DD h');
   // const horaMoment = moment(`${consulta.date}`,'h');
   res.render('private/paciente/editar-consulta', consulta);
@@ -37,7 +36,6 @@ router.post('/editar/realizar', async (req, res, next) => {
   const user = req.user;
   const consulta = req.body;
   const updateConsulta = await Consulta.findByIdAndUpdate({_id: consulta._id},consulta);
-  console.log(updateConsulta)
   res.redirect('/consultas');
 });
 
@@ -55,7 +53,6 @@ router.get('/criar-consulta', async (req, res, next) => {
   try {
     const user = req.user;
     if(user.role ==="PACIENTE"){
-        console.log(req.user)
         const paciente = await Paciente.findOne({user:req.user._id});
         const medicosPaciente = [];
         let medico;
@@ -67,12 +64,14 @@ router.get('/criar-consulta', async (req, res, next) => {
         res.render('private/paciente/criar-consulta', {medicosPaciente});
 
     } else {
-      
-        const pacientes = await Paciente.find({medico:req.user._id}).sort({name: 1});
+        const medico = await Medico.findOne({user: req.user._id})
+        console.log(medico)
+        console.log(medico._id)
+        const pacientes = await Paciente.find({medicos: medico._id});
         console.log(pacientes)
         
        
-        for (let i = 0; i < paciente.medicos.length; i++){
+        for (let i = 0; i < pacientes.medico.length; i++){
           medico = await Medico.findOne({_id:paciente.medicos[i]});
           medicosPaciente.push(medico);
     
@@ -88,6 +87,7 @@ router.get('/criar-consulta', async (req, res, next) => {
 router.post('/criar-consulta', async (req, res, next) => {
   try {
     
+
     console.log(req.body);
     console.log(req.user);
     const medicoIstance = await Medico.findOne({CRM:req.body.CRM});
@@ -109,6 +109,24 @@ router.post('/criar-consulta', async (req, res, next) => {
     console.log(error)
     res.redirect('/consultas/criar-consulta');
   }
+});
+
+//Rota GET para finalizar consulta
+
+//Rota GET para deletar consulta
+router.get('/finalizar/realizar/:id', async (req, res, next) => {
+
+  const idConsulta = req.params.id;
+
+  const errorMessage = {message: req.flash('error')};
+  const consulta = await Consulta.findOne({_id: idConsulta });
+  res.render('private/medico/finalizar-consulta', consulta);
+});
+
+router.post('/finalizar/', async (req, res, next) => {
+
+  const consultaFinalizar = await Consulta.findByIdAndUpdate({_id: req.body._id}, req.body);
+  res.redirect('/consultas');
 });
 
 

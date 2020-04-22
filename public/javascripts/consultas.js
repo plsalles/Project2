@@ -1,9 +1,7 @@
 const html = document.querySelector('.container-consultas-middle-section');
 const userId = html.getAttribute('user');
 const role = html.getAttribute('role');
-console.log(html)
-console.log(userId)
-console.log(role)
+
 let htmlConsultaRealizar = `
 `;
 
@@ -48,7 +46,7 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
     const dateTime = element.date.split('T'); 
     const date = dateTime[0];
     const time = dateTime[1].split(':00.')[0];
-    console.log(time)
+
     const arrayDate = [];
       date.split('-').forEach(e => {
         arrayDate.unshift(e);
@@ -88,6 +86,7 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
             ${element.status}
             <a href="/consultas/editar/realizar/${element._id}">Editar</a>
             <a href="/consultas/deletar/realizar/${element._id}">Deletar</a>
+            <a href="/consultas/finalizar/realizar/${element._id}">Finalizar</a>
           </td>
   
         </tr>
@@ -156,15 +155,11 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
                 <td>${element.exames}</td>
                 <td>
                   ${element.status}
-                  <a href="/consultas/editar/realizadas/${element._id}">Editar</a>
-                  <a href="/consultas/deletar/realizadas/${element._id}">Deletar</a>
                 </td>
         
               </tr>
             `
             ;
-            console.log(htmlConsultaRealizadas)
-            console.log(tabela)
             tabela.innerHTML= htmlConsultaRealizadas;
         }
         if(role==='MEDICO'){
@@ -177,8 +172,6 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
               <td>${element.exames}</td>
               <td>
                 ${element.status}
-                <a href="/consultas/editar/realizadas/${element._id}">Editar</a>
-                <a href="/consultas/deletar/realizadas/${element._id}">Deletar</a>
               </td>
       
             </tr>
