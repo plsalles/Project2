@@ -85,7 +85,7 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
           <td>
             ${element.status}
             <a href="/consultas/editar/realizar/${element._id}">Editar</a>
-            <a href="/consultas/deletar/realizar/${element._id}">Deletar</a>
+            <a href="/consultas/deletar/realizar/${element._id}">Cancelar</a>
             <a href="/consultas/finalizar/realizar/${element._id}">Finalizar</a>
           </td>
   

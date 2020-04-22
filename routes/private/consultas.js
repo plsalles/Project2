@@ -67,15 +67,10 @@ router.get('/criar-consulta', async (req, res, next) => {
         const medico = await Medico.findOne({user: req.user._id})
         console.log(medico)
         console.log(medico._id)
-        const pacientes = await Paciente.find({medicos: medico._id});
-        console.log(pacientes)
-        
-       
-        for (let i = 0; i < pacientes.medico.length; i++){
-          medico = await Medico.findOne({_id:paciente.medicos[i]});
-          medicosPaciente.push(medico);
-    
-        }
+        const pacientesMedico = await Paciente.find({medicos: medico._id});
+        console.log(pacientesMedico)
+        res.render('private/medico/criar-consulta', {pacientesMedico});
+     
     }
   } catch (error) {
     console.log(error)
