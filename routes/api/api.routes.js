@@ -3,8 +3,6 @@ const router = express.Router();
 const { Medico,Paciente,Consulta } = require('../../models')
 const moment = require('moment');
 
-
-
 //Rota API para buscar todas as consutlas realizadas para um user
 router.get('/api/consultas/realizadas', async (req, res, next) => {
   try {
@@ -129,6 +127,18 @@ router.post('/api/consultas/realizar', async (req, res, next) => {
 });
 /////////////////////////////////////////////////////////
 
+
+router.post('/api/medico', async (req, res, next) => {
+  try {
+      const { name } =req.body
+      const medicos = await Medico.find({name: new RegExp(name, "i")}).sort({date:-1})
+      
+    return res.status(200).send(medicos)
+    }catch (error) {
+    console.log(error)
+    return res.status(500).json(error)
+  }
+});
 
 
 module.exports = router;

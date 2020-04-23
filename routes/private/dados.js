@@ -26,7 +26,7 @@ router.post('/', async (req, res, next) => {
 
     
     
-    const dataToUpdate = {name: req.body.name, email: req.body.email, endereco: {logradouro: req.body.logradouro, numero: req.body.numero,complemento: req.body.complemento,bairro: req.body.bairro, cep: req.body.cep, cidade: req.body.cidade, estado: req.body.estado, pais: req.body.pais}};
+    const dataToUpdate = {name: req.body.name, email: req.body.email, endereco: {logradouro: req.body.logradouro, numero: req.body.numero, complemento: req.body.complemento,bairro: req.body.bairro, cep: req.body.cep, cidade: req.body.cidade, estado: req.body.estado, pais: req.body.pais}};
 
     console.log(req.body);
     if(req.body.password != ''){
