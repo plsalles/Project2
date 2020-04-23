@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Medico,Paciente,Consulta } = require('../../models')
-
+const moment = require('moment');
 
 
 // Rota Consultas para paciente
@@ -24,11 +24,11 @@ router.get('/editar/realizar/:id', async (req, res, next) => {
   const idConsulta = req.params.id;
   const errorMessage = {message: req.flash('error')};
   const consulta = await await Consulta.findOne({_id: idConsulta }).populate('medico').populate('paciente');
-  const data = Date.parse(`${consulta.date}`).toISOString();
-  console.log(consulta)
+  let data = moment(consulta.date).format('YYYY-MM-DD');
+  let hora = moment(consulta.date).format('HH:mm');
+  consulta.date = data;
+  consulta.hora = hora;
   console.log(data)
-  // consulta.hora = moment(`${consulta.date}`).format('HH:mm');
-  //consulta.date = moment(`${consulta.date}`).format();
 
   res.render('private/paciente/editar-consulta', consulta);
 });
@@ -38,6 +38,7 @@ router.post('/editar/realizar', async (req, res, next) => {
 
   const user = req.user;
   const consulta = req.body;
+  console.log(req.body)
   const updateConsulta = await Consulta.findByIdAndUpdate({_id: consulta._id},consulta);
   res.redirect('/consultas');
 });
