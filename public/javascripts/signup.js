@@ -18,7 +18,6 @@ window.addEventListener('load', () => {
         <button  type="submit">Finalizar Cadastro</button>
       </div>`
   });
-
   document.getElementById('paciente-sign-up-buttom').addEventListener('click', function (event) {
     const formContainer = document.getElementById('addition-inputs');
     formContainer.innerHTML = `
@@ -29,12 +28,49 @@ window.addEventListener('load', () => {
           <input type="text" name="cpf" placeholder="Digite seu CPF">
         </div>
       </div>
-      <h3>Médico de confiança (opcional)</h3>
-        <input type="text" name="medico" placeholder="Digite o nome do médico de confiança">
+        <h3>Médico de confiança (opcional)</h3>
+        <input type="text" id="medico-name" name="medico" placeholder="Digite o nome do médico de confiança">
+        <button id="procura-medico" type="button">Procurar Médico</button>
+        <p id="msg-procura-medico" style='color:red'></p>
+        <div id ="medico-select-div"></div>
       </div>
       <div>
-        <button  type="submit">Finalizar Cadastro</button>
+      <button  type="submit">Finalizar Cadastro</button>
       </div>`
+      document.getElementById('procura-medico').addEventListener('click', async function (event) {
+        const medicoNameTag = document.getElementById('medico-name')
+        const medicoName = medicoNameTag.value
+        const msgProcuraMedico = document.getElementById('msg-procura-medico')
+        msgProcuraMedico.innerText = ''
+        try{
+        if(medicoName===''){
+          msgProcuraMedico.innerText = 'Digite o nome de um médico para continuar'
+        }
+        else if(medicoName.length>=30){
+          msgProcuraMedico.innerText = 'Nome invalido, por favor tente novamente'
+        }
+        else{
+          medicos = (await axios.post(`http://localhost:3000/api/medico`,{name:medicoName})).data
+          const medicoSelectDiv = document.getElementById('medico-select-div')
+          if(medicos.length===0) msgProcuraMedico.innerText = 'Médico não encontrado'
+          else{
+            let medicoSelect = ''
+            for(let i=0;i<medicos.length;i++){
+              console.log(medicos[i])
+              medicoSelect = medicoSelect+`<option value="${medicos[i]._id}">${medicos[i].name},${medicos[i].especializacao}</option>`
+            }
+            medicoSelectDiv.innerHTML = `
+              <select name="medicoPessoalId">
+              ${medicoSelect}
+              </select>`
+          }
+  
+        }
+      }catch (error) {
+        msgProcuraMedico.innerText = 'Médico não encontrado'
+      }
+    })
+
   })
   document.getElementById('procura-cep').addEventListener('click', async function (event) {
     const cepTag = document.getElementsByClassName('cep')[0]
@@ -89,11 +125,11 @@ window.addEventListener('load', () => {
           </select>
         </div>
       </div>`
-       
-        console.log(cepObj)
+      console.log(cepObj)
       }catch (error) {
-        msgCep.innerText = 'CEP não encontrado'
+        msgCep.innerText = 'Médico não encontrado'
       }
     }
   })
+
 });
