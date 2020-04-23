@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Medico,Paciente,Consulta } = require('../../models')
-const moment = require('moment');
+
 
 
 // Rota Consultas para paciente
@@ -24,9 +24,12 @@ router.get('/editar/realizar/:id', async (req, res, next) => {
   const idConsulta = req.params.id;
   const errorMessage = {message: req.flash('error')};
   const consulta = await await Consulta.findOne({_id: idConsulta }).populate('medico').populate('paciente');
+  const data = Date.parse(`${consulta.date}`).toISOString();
+  console.log(consulta)
+  console.log(data)
+  // consulta.hora = moment(`${consulta.date}`).format('HH:mm');
+  //consulta.date = moment(`${consulta.date}`).format();
 
-  // const dataMoment = moment(`${consulta.date}`,'YYYY-MM-DD h');
-  // const horaMoment = moment(`${consulta.date}`,'h');
   res.render('private/paciente/editar-consulta', consulta);
 });
 

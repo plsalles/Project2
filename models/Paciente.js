@@ -7,7 +7,7 @@ const pacienteSchema = new Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String, require:true},
   cpf: { type: String, require: true, unique: true},
-  endereco: { logradouro: { type: String, require: true}, numero: {type: Number, require: true}, bairro: { type: String, require: true}, cidade: { type: String, require: true}, estado: { type: String, require: true}, cep: {type: String, require: true},pais: { type: String, require: true}},
+  endereco: { logradouro: { type: String, require: true}, numero: {type: Number, require: true}, bairro: { type: String, require: true}, complemento: { type: String}, cidade: { type: String, require: true}, estado: { type: String, require: true}, cep: {type: String, require: true}, pais: { type: String, require: true}},
   medicos: [{ type: mongoose.Types.ObjectId, ref: 'Medico'}],
   user: { type: mongoose.Types.ObjectId, ref: 'User'},
   },
