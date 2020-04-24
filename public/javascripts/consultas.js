@@ -14,7 +14,7 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
 .then(data => {
   const tabela = document.getElementById('inicio-tableta-consultas-realizar');
   const consultasRealizar = data.data;
-  console.log(consultasRealizar);
+  
   if(role==='PACIENTE'){
     htmlConsultaRealizar +=`
       <tr class="table-title">
@@ -155,9 +155,13 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
                 <td>${element.exames}</td>
                 <td>
                   ${element.status}
+                  <button class="consulta-botao-detalhes" type="submit" id="ata-${element._id}">
+                    <img src="/images/plus-square-solid.svg" alt="Detalhes">
+                  </button>
                 </td>
-        
               </tr>
+              <tr class="consulta-botao-remove" id="detalhes-ata-${element._id}" hidden><td colspan="6">${element.ata}</td></tr>
+              
             `
             ;
             tabela.innerHTML= htmlConsultaRealizadas;
@@ -172,18 +176,56 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
               <td>${element.exames}</td>
               <td>
                 ${element.status}
+                <button class="consulta-botao-detalhes" type="submit" id="ata-${element._id}">
+                <img src="/images/plus-square-solid.svg" alt="Detalhes">
+                </button>
               </td>
-      
-            </tr>
+            </tr >
+            <tr class="consulta-botao-remove" id="detalhes-ata-${element._id}" hidden><td colspan="6">${element.ata}</td></tr> 
           `
           ;
-      
+          
           tabela.innerHTML= htmlConsultaRealizadas;
+       
       }
+     
 
-        });
+      });
+
+      document.querySelectorAll('.consulta-botao-detalhes').forEach(e => {
+        e.addEventListener('click', () => {
+          console.log(e);
+          const id = e.id.split('ata-')[1];
+          const idAta = `detalhes-ata-${id}`;
+          document.getElementById(idAta).toggleAttribute('hidden');
+
+
+          
+                
+          })
+
+
+
+
+
+
+        })
+      
+      
+
       })
       .catch(error => console.log(error));
+
+      
+     
+       
+          
+          
+          
+            
+        
+      
+ 
          
 
 

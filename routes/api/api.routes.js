@@ -18,7 +18,7 @@ router.get('/api/consultas/realizadas', async (req, res, next) => {
 
       if(!pacienteIstance) throw Error('Paciente Not Found')
       const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizada'}).populate('medico').sort({date:-1});
-
+      
       return res.status(200).send(consultas)
     }
   } catch (error) {
@@ -43,6 +43,7 @@ router.get('/api/consultas/realizar', async (req, res, next) => {
       const pacienteIstance = await Paciente.findOne({user:_id})
       if(!pacienteIstance) throw Error('Paciente Not Found')
       const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizar'}).populate('medico').sort({date:-1});
+
       return res.status(200).send(consultas)
     }
   } catch (error) {
@@ -137,6 +138,23 @@ router.post('/api/medico', async (req, res, next) => {
     }catch (error) {
     console.log(error)
     return res.status(500).json(error)
+  }
+});
+
+
+
+//Rota API para buscar todas as consutlas realizadas para um user
+router.get('/api/consultas/realizadas/detalhes', async (req, res, next) => {
+  try {
+    const { role,_id } = req.query;
+    const consulta = await Consulta.findOne({_id: _id});
+   
+    return res.status(200).send(consulta);
+   
+        
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
   }
 });
 

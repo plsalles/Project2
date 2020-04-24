@@ -4,6 +4,11 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 25px; }
 
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
 a {
   color: #00B7FF; }
 
@@ -218,5 +223,11 @@ a {
 
 .table-title td {
   font-weight: bold; }
+
+.consulta-botao-detalhes {
+  height: 40px; }
+
+.detalhes-consulta {
+  visibility: hidden; }
 
 /*# sourceMappingURL=style.css.map */
