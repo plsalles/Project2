@@ -155,12 +155,12 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
                 <td>${element.exames}</td>
                 <td>
                   ${element.status}
-                  <button class="consulta-botao-detalhes" type="submit" id="ata-${element._id}">
+                  <button class="consulta-botao-detalhes-mais" type="submit" id="ata-${element._id}">
                     <img src="/images/plus-square-solid.svg" alt="Detalhes">
                   </button>
                 </td>
               </tr>
-              <tr class="consulta-botao-remove" id="detalhes-ata-${element._id}" hidden><td colspan="6">${element.ata}</td></tr>
+              <tr class="consulta-ata" id="detalhes-ata-${element._id}" hidden><td colspan="6"><span>ATA CONSULTA:</span> ${element.ata}</td></tr>
               
             `
             ;
@@ -176,12 +176,12 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
               <td>${element.exames}</td>
               <td>
                 ${element.status}
-                <button class="consulta-botao-detalhes" type="submit" id="ata-${element._id}">
-                <img src="/images/plus-square-solid.svg" alt="Detalhes">
+                <button class="consulta-botao-detalhes-mais" type="submit" id="ata-${element._id}">
+                  <img src="/images/plus-square-solid.svg" alt="Detalhes">
                 </button>
               </td>
             </tr >
-            <tr class="consulta-botao-remove" id="detalhes-ata-${element._id}" hidden><td colspan="6">${element.ata}</td></tr> 
+            <tr class="consulta-ata" id="detalhes-ata-${element._id}" hidden><td colspan="6"><span>ATA CONSULTA:</span> ${element.ata}</td></tr> 
           `
           ;
           
@@ -192,12 +192,13 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
 
       });
 
-      document.querySelectorAll('.consulta-botao-detalhes').forEach(e => {
+      document.querySelectorAll('.consulta-botao-detalhes-mais').forEach(e => {
         e.addEventListener('click', () => {
           console.log(e);
           const id = e.id.split('ata-')[1];
           const idAta = `detalhes-ata-${id}`;
           document.getElementById(idAta).toggleAttribute('hidden');
+          document.getElementById(e.id).classList.toggle('consulta-botao-detalhes-menos');
 
 
           

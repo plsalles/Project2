@@ -282,11 +282,19 @@ a {
 }
 
 .consulta-botao-detalhes {
-  height: 40px;
+  
 }
 
-.detalhes-consulta {
-  visibility: hidden;
+.consulta-botao-detalhes-mais {
+  background-image: url('/images/plus-square-solid.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px;
+
+}
+
+.consulta-botao-detalhes-menos {
+  background-image: url('/images/plus-square-soli.svg') !important; 
 }
 
 

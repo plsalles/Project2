@@ -224,10 +224,13 @@ a {
 .table-title td {
   font-weight: bold; }
 
-.consulta-botao-detalhes {
-  height: 40px; }
+.consulta-botao-detalhes-mais {
+  background-image: url("/images/plus-square-solid.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 30px; }
 
-.detalhes-consulta {
-  visibility: hidden; }
+.consulta-botao-detalhes-menos {
+  background-image: url("/images/plus-square-soli.svg") !important; }
 
 /*# sourceMappingURL=style.css.map */
