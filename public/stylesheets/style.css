@@ -212,14 +212,68 @@ a {
   transition: .3s ease background; }
 
 .container-consultas-middle-section {
-  height: 700px;
+  margin: 30px 30px;
+  display: flex;
+  flex-direction: row;
+  background-image: url("/images/img-form.png");
+  border-radius: 4px; }
+
+.container-consultas-middle-section label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: center;
+  width: 20%;
+  height: 25px; }
+
+.container-consultas-middle-section h3 {
+  display: block; }
+
+.container-consultas-middle-section {
+  color: #700;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background; }
+
+.container-consultas-middle-section {
   display: flex;
   flex-direction: column;
   font-size: 20px; }
 
 .container-consultas-middle-section table, td, tr {
-  border: 1px solid black;
-  text-align: center; }
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-right: 5px;
+  outline: 0;
+  padding: 4px;
+  margin-bottom: 20px;
+  border-radius: 4px; }
+
+.container-consultas-middle-section td, tr {
+  border: 1px solid #700; }
+
+.links-consulta-realizar a {
+  border: 1px solid #700;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none; }
+
+.links-consulta-realizar {
+  color: grey; }
+
+a:link, a:visited {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline;
+  color: black; }
+
+a:active {
+  text-decoration: none; }
 
 .table-title td {
   font-weight: bold; }
@@ -237,5 +291,21 @@ a {
   background-position: center;
   background-size: 22px;
   height: 22px; }
+
+#botao-criar-consulta {
+  color: grey; }
+
+a:link, a:visited {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: underline;
+  color: black; }
+
+a:active {
+  text-decoration: none; }
+
+.table-title td {
+  font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */

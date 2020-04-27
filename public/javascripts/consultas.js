@@ -64,8 +64,8 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
             <td>${element.exames}</td>
             <td>
               ${element.status}
-              <a href="/consultas/editar/realizar/${element._id}">Editar</a>
-              <a href="/consultas/deletar/realizar/${element._id}">Deletar</a>
+              <a class="links-consulta-realizar" href="/consultas/editar/realizar/${element._id}">Editar</a>
+              <a class="links-consulta-realizar" href="/consultas/deletar/realizar/${element._id}">Deletar</a>
             </td>
     
           </tr>
@@ -84,9 +84,9 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
           <td>${element.exames}</td>
           <td>
             ${element.status}
-            <a href="/consultas/editar/realizar/${element._id}">Editar</a>
-            <a href="/consultas/deletar/realizar/${element._id}">Cancelar</a>
-            <a href="/consultas/finalizar/realizar/${element._id}">Finalizar</a>
+            <a class="links-consulta-realizar" href="/consultas/editar/realizar/${element._id}">Editar</a>
+            <a class="links-consulta-realizar" href="/consultas/deletar/realizar/${element._id}">Cancelar</a>
+            <a class="links-consulta-realizar" href="/consultas/finalizar/realizar/${element._id}">Finalizar</a>
           </td>
   
         </tr>
