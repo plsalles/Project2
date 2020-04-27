@@ -13,6 +13,7 @@
 </nav>
 <section class="container-dados">
   <div>
+  <div>
     <form id="form-dados-paciente" action="/dados/" method="POST">
       <div>
         <div>
@@ -38,6 +39,10 @@
         <div>
         <label for="cpf">CRM</label><br>
         <input type="text" name="CRM" value="{{medico.CRM}}" disabled>
+        </div>
+        <div>
+        <label for="cpf">Especialização</label><br>
+        <input type="text" name="especializacao" value="{{medico.especializacao}}" >
         </div>
       <div>
       </div>
@@ -100,20 +105,30 @@
         <option value="TO">TO</option>
       </select>
       </div>
-      <div>
-        <label for="pais">País</label><br>
-        <input type="text" name="pais" value="{{medico.endereco.pais}}">
-      </div>
       <button type="submit">Atualizar dados</button>
       </div>
     </form>
-  </div>
   <div>
   {{#if errorMessage}}
     <span>{{errorMessage}}</span>
   {{/if}}
-</div>
+  </div>  
+  </div>
+  </div>
+  <div>
+    <table>
+      <tbody class="dados-pacientes-medico">
+        <tr>
+          <td>Pacientes </td>
+        </tr>
+        {{#each pacientesMedico}}
+        <tr>
+          <td>{{this.name}} <a href="#">Remover</a></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </section>
 <footer class="footer-home">
-
 </footer>

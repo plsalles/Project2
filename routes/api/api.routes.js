@@ -40,6 +40,7 @@ router.get('/api/consultas/realizar', async (req, res, next) => {
       return res.status(200).send(consultas)
     }
     else if(role ==='PACIENTE'){
+      console.log(req.user);
       const pacienteIstance = await Paciente.findOne({user:_id})
       if(!pacienteIstance) throw Error('Paciente Not Found')
       const consultas = await Consulta.find({paciente:pacienteIstance._id,status:'Realizar'}).populate('medico').sort({date:-1});
@@ -133,7 +134,7 @@ router.post('/api/medico', async (req, res, next) => {
   try {
       const { name } =req.body
       const medicos = await Medico.find({name: new RegExp(name, "i")}).sort({date:-1})
-      
+      console.log(medicos)
     return res.status(200).send(medicos)
     }catch (error) {
     console.log(error)

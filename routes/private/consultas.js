@@ -4,7 +4,7 @@ const { Medico,Paciente,Consulta } = require('../../models')
 const moment = require('moment');
 
 
-// Rota Consultas para paciente
+// Rota Consultas 
 router.get('/', async (req, res, next) => {
   const user = req.user;
   const errorMessage = {message: req.flash('error')};
@@ -120,7 +120,6 @@ router.post('/criar-consulta', async (req, res, next) => {
 
 //Rota GET para finalizar consulta
 
-//Rota GET para deletar consulta
 router.get('/finalizar/realizar/:id', async (req, res, next) => {
 
   const idConsulta = req.params.id;

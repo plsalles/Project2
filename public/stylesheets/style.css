@@ -308,4 +308,10 @@ a:active {
 .table-title td {
   font-weight: bold; }
 
+.dados-medicos-paciente {
+  border: 1px solid #700;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none; }
+
 /*# sourceMappingURL=style.css.map */
