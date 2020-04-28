@@ -59,6 +59,7 @@ router.post('/signup', async (req, res, next) => {
           cidade: req.body.cidade,
           estado: req.body.estado,
           numero: req.body.numero,
+          complemento: req.body.complemento,
           cep:    req.body.cep
         }};
       
@@ -70,6 +71,7 @@ router.post('/signup', async (req, res, next) => {
         cidade: req.body.cidade,
         estado: req.body.estado,
         numero: req.body.numero,
+        complemento: req.body.complemento,
         cep:    req.body.cep
       },
         especializacao:req.body.especializacao
