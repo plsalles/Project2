@@ -16,7 +16,7 @@
     <form id="form-sign-up" action="/consultas/criar-consulta" method="POST">
     <div>
       <label for="cpf">Paciente</label><br>
-      <select name="CRM" id="">
+      <select name="cpf" id="">
         {{#each pacientesMedico}}
           <option value="{{this.cpf}}">{{this.name}}</option>
         {{/each}}

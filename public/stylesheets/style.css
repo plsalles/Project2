@@ -278,6 +278,75 @@ a:active {
 .table-title td {
   font-weight: bold; }
 
+.wrapper {
+  display: grid;
+  grid-template-rows: 70px 1fr 100px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "sidebar" "content";
+  width: 100vw;
+  /* unnecessary, but let's keep things consistent */
+  height: 100%; }
+
+.calendar__week,
+.calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); }
+
+.calendar__week {
+  grid-auto-rows: 100px;
+  text-align: right; }
+
+.calendar__header {
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center; }
+
+.calendar__day {
+  padding: 16px; }
+
+.horarios {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  align-items: center; }
+
+/* COSMETIC STYLING */
+:root {
+  --red: #ED5454; }
+
+body {
+  font-family: Montserrat;
+  font-weight: 100;
+  color: #A8B2B9; }
+
+.calendar {
+  background-color: white;
+  border: 1px solid #e1e1e1; }
+
+.calendar__header > div {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold; }
+
+.calendar__day {
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+  font-size: 0.7em; }
+
+.calendar__day:last-child {
+  border-right: 0; }
+
+.today {
+  border-right: 0;
+  background-color: #1A73E8; }
+
+.consultaMarcada {
+  text-align: left;
+  font-size: 20px;
+  border-right: 0;
+  background-color: #a5bdff;
+  color: black; }
+  
 .consulta-botao-detalhes-mais {
   background-image: url("/images/botao-mais.png");
   background-repeat: no-repeat;

@@ -142,6 +142,50 @@ router.post('/api/medico', async (req, res, next) => {
   }
 });
 
+router.get('/api/paciente/:id', async (req, res, next) => {
+  try {
+      const { id } =req.params
+      const paciente = await Paciente.findOne({_id:id})
+      
+    return res.status(200).send(paciente)
+    }catch (error) {
+    console.log(error)
+    return res.status(500).json(error)
+  }
+});
+
+router.get('/api/medico/:id', async (req, res, next) => {
+  try {
+      const { id } =req.params
+      const medico = await Medico.findOne({_id:id})
+
+    return res.status(200).send(medico)
+    }catch (error) {
+    console.log(error)
+    return res.status(500).json(error)
+  }
+});
+
+
+router.post('/api/agenda', async (req, res, next) => {
+  try {
+      const { date,userId,role } =req.body
+      if(!userId || userId==="") throw Error('Not userId found in the requisition body')
+      if(role==='MEDICO'){
+        const medico = await Medico.findOne({user:userId})
+        const consultas = await Consulta.find({medico:medico._id,date: {$gte:moment(`${date} 00:00:00`,'YYYY-MM-DD HH:mm:ss'), $lte:moment(`${date} 23:59:59`,'YYYY-MM-DD HH:mm:ss')}})
+        return res.status(200).send(consultas)
+      }
+      if(role==='PACIENTE'){
+        const paciente = await Paciente.findOne({user:userId})
+        const consultas = await Consulta.find({ paciente:paciente._id, date:{$gte:moment(`${date} 00:00:00`,'YYYY-MM-DD HH:mm:ss'), $lte:moment(`${date} 23:59:59`,'YYYY-MM-DD HH:mm:ss')}})
+        return res.status(200).send(consultas)
+      }
+    }catch (error) {
+    console.log(error)
+    return res.status(500).json({error:true,stack:error.stack})
+  }
+});
 
 
 //Rota API para buscar todas as consutlas realizadas para um user
