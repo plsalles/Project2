@@ -1,0 +1,55 @@
+<nav class="nav-home">
+  <div class="nav-left">
+    <img src="/images/logo-nav.jpg" alt="">
+    <h1>Portal IronMedic</h1>
+  </div>
+  <div>
+    <a href="/home">Home</a>
+    <a href="/agenda">Agenda</a>
+    <a href="/consultas">Consultas</a>
+    <a href="/dados">Dados</a>
+    <a href="/logout">Logout</a>
+  </div>
+</nav>
+<section class="container-consultas-middle-section">
+  <div>
+    <form id="form-sign-up" action="/consultas/criar-consulta" method="POST">
+    <div>
+      <label for="CRM">Médico</label><br>
+      <select name="CRM" id="">
+        {{#each medicosPaciente}}
+          <option value="{{this.CRM}}">{{this.name}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div>
+      <label for="date">Data</label><br>
+      <input type="date" name="date">
+      </div>
+    <div>
+      <label for="hora">Hora</label><br>
+      <input type="time" name="hora">
+    </div>
+    <div>
+      <label for="descricao">Descrição</label><br>
+      <input type="text" name="descricao" placeholder="Digite uma breve descrição da sua consulta">
+    </div>
+    <div>
+      <label for="exames">Exames</label><br>
+      <input type="text" name="exames" placeholder="Informe os exames disponíveis para a consulta">
+    </div>
+    <div>
+      <button type="submit">Criar consulta</button>
+    </div>
+    </form>
+  </div>
+  <div>
+    {{#if errorMessage}}
+      <span>{{errorMessage}}</span>
+    {{/if}}
+  </div>
+</section>
+<footer class="footer-home">
+</footer>
+
+

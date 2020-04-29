@@ -1,22 +1,55 @@
-<div>
-  <form action="/signup" method="POST">
-    <input type="text" name="name" placeholder="Digite o nome completo">
-    <input type="text" name="username" placeholder="Digite o nome de usuário">
-    <input type="password" name="password" placeholder="Digite a senha">
-    <input type="text" name="email" placeholder="Digite o seu email">
+<nav class="nav-home">
+  <div class="nav-left">
+    <img src="/images/logo-nav.jpg" alt="">
+    <h1>Portal IronMedic</h1>
+  </div>
+  <div>
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+  </div>
+</nav>
+<section class="container-sign-up">
+  <div>
+    <form id="form-sign-up" action="/signup" method="POST">
+    <div>
+      <label for="name">Nome</label><br>
+      <input type="text" name="name" placeholder="Digite o nome completo">
+    </div>
+    <div>
+      <label for="username">Username</label><br>
+      <input type="text" name="username" placeholder="Digite o nome de usuário">
+    </div>
+    <div>
+      <label for="password">Senha</label><br>
+      <input type="password" name="password" placeholder="Digite a senha">
+      </div>
+    <div>
+      <label for="email">Email</label><br>
+      <input type="text" name="email" placeholder="Digite o seu email">
+    </div>
+    <div>
+      <label for="cep">CEP</label><br>
+      <input class='cep' type="text" name="cep" placeholder="Digite seu CEP">
+      <button id='procura-cep' type="button">Procurar</button>
+      <p id='msg-cep' style='color:red'></p>
+    </div>
+    <div id ='address-inputs'></div>
     <div>
       <h3>Este usuário é referente a qual opção abaixo?</h1>
       <button id='medico-sign-up-buttom' type="button">Médico</button>
       <button id='paciente-sign-up-buttom' type="button">Paciente</button>
     </div>       
     <div id ='addition-inputs'></div>
-  </form>
+    </form>
+  </div>
   <div>
     {{#if errorMessage}}
       <span>{{errorMessage}}</span>
     {{/if}}
   </div>
-</div>
-
+</section>
+<footer class="footer-home">
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/cep-promise/dist/cep-promise.min.js"></script>
 <script src="/javascripts/signUp.js"></script>
 
