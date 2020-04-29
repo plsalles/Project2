@@ -14,7 +14,7 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
 .then(data => {
   const tabela = document.getElementById('inicio-tableta-consultas-realizar');
   const consultasRealizar = data.data;
-  console.log(consultasRealizar);
+  
   if(role==='PACIENTE'){
     htmlConsultaRealizar +=`
       <tr class="table-title">
@@ -64,8 +64,8 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
             <td>${element.exames}</td>
             <td>
               ${element.status}
-              <a href="/consultas/editar/realizar/${element._id}">Editar</a>
-              <a href="/consultas/deletar/realizar/${element._id}">Deletar</a>
+              <a class="links-consulta-realizar" href="/consultas/editar/realizar/${element._id}">Editar</a>
+              <a class="links-consulta-realizar" href="/consultas/deletar/realizar/${element._id}">Deletar</a>
             </td>
     
           </tr>
@@ -84,9 +84,9 @@ axios.get(`http://localhost:3000/api/consultas/realizar?_id=${userId}&role=${rol
           <td>${element.exames}</td>
           <td>
             ${element.status}
-            <a href="/consultas/editar/realizar/${element._id}">Editar</a>
-            <a href="/consultas/deletar/realizar/${element._id}">Cancelar</a>
-            <a href="/consultas/finalizar/realizar/${element._id}">Finalizar</a>
+            <a class="links-consulta-realizar" href="/consultas/editar/realizar/${element._id}">Editar</a>
+            <a class="links-consulta-realizar" href="/consultas/deletar/realizar/${element._id}">Cancelar</a>
+            <a class="links-consulta-realizar" href="/consultas/finalizar/realizar/${element._id}">Finalizar</a>
           </td>
   
         </tr>
@@ -155,9 +155,13 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
                 <td>${element.exames}</td>
                 <td>
                   ${element.status}
+                  <button class="consulta-botao-detalhes-mais" type="submit" id="ata-${element._id}">
+                    <img src="/images/plus-square-solid.svg" alt="Detalhes">
+                  </button>
                 </td>
-        
               </tr>
+              <tr class="consulta-ata" id="detalhes-ata-${element._id}" hidden><td colspan="6"><span>ATA CONSULTA:</span> ${element.ata}</td></tr>
+              
             `
             ;
             tabela.innerHTML= htmlConsultaRealizadas;
@@ -172,18 +176,57 @@ axios.get(`http://localhost:3000/api/consultas/realizadas?_id=${userId}&role=${r
               <td>${element.exames}</td>
               <td>
                 ${element.status}
+                <button class="consulta-botao-detalhes-mais" type="submit" id="ata-${element._id}">
+                  <img src="/images/plus-square-solid.svg" alt="Detalhes">
+                </button>
               </td>
-      
-            </tr>
+            </tr >
+            <tr class="consulta-ata" id="detalhes-ata-${element._id}" hidden><td colspan="6"><span>ATA CONSULTA:</span> ${element.ata}</td></tr> 
           `
           ;
-      
+          
           tabela.innerHTML= htmlConsultaRealizadas;
+       
       }
+     
 
-        });
+      });
+
+      document.querySelectorAll('.consulta-botao-detalhes-mais').forEach(e => {
+        e.addEventListener('click', () => {
+          console.log(e);
+          const id = e.id.split('ata-')[1];
+          const idAta = `detalhes-ata-${id}`;
+          document.getElementById(idAta).toggleAttribute('hidden');
+          document.getElementById(e.id).classList.toggle('consulta-botao-detalhes-menos');
+
+
+          
+                
+          })
+
+
+
+
+
+
+        })
+      
+      
+
       })
       .catch(error => console.log(error));
+
+      
+     
+       
+          
+          
+          
+            
+        
+      
+ 
          
 
 
