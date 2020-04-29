@@ -1,13 +1,29 @@
-<div>
-  <form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Please type the username">
-    <input type="password" name="password" placeholder="Please type the password">
-
-    <button type="submit">Login</button>
-
-   </div>
-  {{#if message}}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
+<nav class="nav-home">
+  <div class="nav-left">
+    <img src="/images/logo-nav.jpg" alt="">
+    <h1>Portal IronMedic</h1>
+  </div>
+</nav>
+<section class="container-login-middle-section">
   <div>
+  <form id="form-login" action="/login" method="POST">
+    <label for="username">Usuário</label><br>
+    <input type="text" name="username" placeholder="Digite o sue usuário">
+
+    <label for="password">Senha</label><br>
+    <input type="password" name="password" placeholder="Digite a sua senha">
+    <button type="submit">Logar</button>
+    {{#if message}}
+      <div class="error-message">{{ message }}</div>
+    {{/if}}
+   </div>
+</section>
+
+<footer class="footer-home">
+</footer>
+
+
+
+
+
 

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const Cidade = require('../../models/Cidade');
 const User = require('../../models/User');
 const Paciente = require('../../models/Paciente');
 const Medico = require('../../models/Medico');
@@ -17,7 +16,7 @@ router.get('/login', (req, res, next) => {
 router.post(
     '/login',
     passport.authenticate('local', {
-      successRedirect: '/intranet',
+      successRedirect: '/home',
       failureRedirect: '/login',
       failureFlash: true,
       passReqToCallback: true
@@ -31,47 +30,76 @@ router.post(
 
 /* Sign Up routes */
 router.get('/signup', async (req, res, next) => {
-  const cidades = await Cidade.find();
   res.render('public/sign-up', { message: req.flash('error') });
 });
 
 router.post('/signup', async (req, res, next) => {
-
   const user = {username: req.body.username, password: req.body.password, role: req.body.role};
-  const roleUserPaciente = { name: req.body.name, email: req.body.email, cpf: req.body.cpf, logradouro: req.body.logradouro, bairro: req.body.bairro, cidade: req.body.cidade, estado: req.body.estado, numero: req.body.numero, medico: req.body.medico, };
-  const roleUserMedico = { name: req.body.name, email: req.body.email, crm: req.body.crm, logradouro: req.body.logradouro, bairro: req.body.bairro, cidade: req.body.cidade, estado: req.body.estado, numero: req.body.numero };
+  let hashPassword;
+  let createdUser
+  try{
+    if (user.password) {
+      const saltRouds = 10;
+      const salt = bcrypt.genSaltSync(saltRouds);
+      hashPassword = bcrypt.hashSync(user.password, salt);
+    }
+    user.password = hashPassword;
+    createdUser = new User(user)
+    await createdUser.save()
+  }catch(error){
+    return res.render('public/sign-up', { message: req.flash('error')})
+  }
 
-  const createdUser = new User(user).save()
-                      .then(createdUser => {
-                        if(user.role === 'MEDICO'){
-                          roleUserMedico.user = createdUser._id;
-                          console.log(roleUserMedico)
-                          new Medico(roleUserMedico).save()
-                                                    .then(data => {
-                                                      console.log(data);
-                                                      res.redirect('/')})
-                                                    .catch(error => {
-                                                      console.log(error)
-                                                      res.render('public/sign-up', { message: req.flash('error')})}
-                                                    );
+    const roleUserPaciente = { name: req.body.name,
+      email: req.body.email,
+        cpf: req.body.cpf,
+        endereco:{
+        logradouro: req.body.logradouro,
+          bairro: req.body.bairro,
+          cidade: req.body.cidade,
+          estado: req.body.estado,
+          numero: req.body.numero,
+          complemento: req.body.complemento,
+          cep:    req.body.cep
+        }};
+      
+    const roleUserMedico = { name: req.body.name,
+      email: req.body.email, CRM: req.body.CRM, 
+      endereco:{
+        logradouro: req.body.logradouro,
+        bairro: req.body.bairro,
+        cidade: req.body.cidade,
+        estado: req.body.estado,
+        numero: req.body.numero,
+        complemento: req.body.complemento,
+        cep:    req.body.cep
+      },
+        especializacao:req.body.especializacao
+      };
 
-                        }
-
-                        if(user.role === 'PACIENTE'){
-                          roleUserPaciente.user = createdUser._id;
-                          console.log(roleUserPaciente)
-                          new Paciente(roleUserPaciente).save()
-                                            .then(data => {
-                                              console.log(data);
-                                              res.redirect('/')})
-                                            .catch(error => {
-                                              console.log(error)
-                                              res.render('public/sign-up', { message: req.flash('error')})}
-                                            );
-                        }
-                      })
-                      .catch(error => res.render('public/sign-up', { message: req.flash('error')}));
+    try{
+    if(user.role === 'MEDICO'){
+      roleUserMedico.user = createdUser._id;
+      console.log(roleUserMedico)
+      const newMedico = new Medico(roleUserMedico)
+      await newMedico.save()
+    }
+    if(user.role === 'PACIENTE'){
+      if(req.body.medicoPessoalId){
+        let medicoPessoal = await Medico.findById(req.body.medicoPessoalId)
+        roleUserPaciente.medicos = [medicoPessoal._id]
+      }
+      roleUserPaciente.user = createdUser._id;
+      console.log(roleUserPaciente)
+      const newPaciente = new Paciente(roleUserPaciente)
+      await newPaciente.save()
+      return res.render('index')
+    } 
+  }catch(error){ 
+    return res.render('public/sign-up', { message: req.flash('error')})
+  }
 
 });
+
 
 module.exports = router;

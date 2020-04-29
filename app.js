@@ -24,6 +24,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -73,7 +74,7 @@ passport.use(
     User.findOne({ username })
       .then(user => {
         if (!user || !bcrypt.compareSync(password, user.password)) {
-          return callback(null, false, { message: 'Incorrect username or password' });
+          return callback(null, false, { message: 'Usuário ou senha incorretos' });
         }
         callback(null, user);
       })
@@ -103,14 +104,17 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
+
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
+const api = require('./routes/api/api.routes');
+app.use('/',api);
 
 const index = require('./routes/public/index');
 app.use('/', index);
 const auth = require('./routes/public/auth.routes');
 app.use('/', auth);
+
 
 app.use((req, res, next) => {
   if (req.isAuthenticated()) {
@@ -121,9 +125,6 @@ app.use((req, res, next) => {
   res.redirect('/login');
 });
 
-const pacienteRoutes = require('./routes/private/paciente.routes');
-app.use('/', pacienteRoutes);
-// const medicoRoutes = require('./routes/public/auth.routes');
-// app.use('/', auth);
+require('./routes/private')(app);
 
 module.exports = app;

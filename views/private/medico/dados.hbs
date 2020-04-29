@@ -1,0 +1,135 @@
+<nav class="nav-home">
+  <div class="nav-left">
+    <img src="/images/logo-nav.jpg" alt="">
+    <h1>Portal IronMedic</h1>
+  </div>
+  <div>
+    <a href="/home">Home</a>
+    <a href="/agenda">Agenda</a>
+    <a href="/consultas">Consultas</a>
+    <a href="/dados">Dados</a>
+    <a href="/logout">Logout</a>
+  </div>
+</nav>
+<section class="container-dados">
+  <div>
+  <div>
+    <form id="form-dados-paciente" action="/dados/" method="POST">
+      <div>
+        <div>
+          <label for="name">Nome</label><br>
+          <input type="text" name="name" value="{{medico.name}}">
+        </div>
+        <div>
+          <label for="username">Username</label><br>
+          <input type="text" name="username" value="{{userMedico.username}}" disabled>
+        </div>
+        <div>
+        <label for="password">Senha</label><br>
+        <input type="password" name="password" placeholder="Digite a nova senha caso queira trocá-la">
+        </div>
+        <div>
+        <label for="email">Email</label><br>
+        <input type="text" name="email" value="{{medico.email}}">
+        </div>
+        <div>
+        <label for="role">Role</label><br>
+        <input type="text" name="role" value="{{userMedico.role}}" disabled>
+        </div>
+        <div>
+        <label for="cpf">CRM</label><br>
+        <input type="text" name="CRM" value="{{medico.CRM}}" disabled>
+        </div>
+        <div>
+        <label for="cpf">Especialização</label><br>
+        <input type="text" name="especializacao" value="{{medico.especializacao}}" >
+        </div>
+      <div>
+      </div>
+      <div>
+      <h3>Endereço</h3>
+      </div>
+      <div>
+      <label for="logradouro">Logradouro</label><br>
+      <input type="text" name="logradouro" value="{{medico.endereco.logradouro}}">
+      </div>
+      <div>
+      <label for="numero">Numero</label><br>
+      <input type="text" name="numero" value="{{medico.endereco.numero}}">
+      </div>
+      <div>
+      <label for="complemento">Complemento</label><br>
+      <input type="text" name="complemento" value="{{medico.endereco.complemento}}">
+      </div>
+      <div>
+      <label for="bairro">Bairro</label><br>
+      <input type="text" name="bairro" value="{{medico.endereco.bairro}}">
+      </div>
+      <div>
+      <label for="cep">CEP</label><br>
+      <input type="text" name="cep" value="{{medico.endereco.cep}}">
+      </div>
+      <div>
+      <label for="cidade">Cidade</label><br>
+      <input type="text" name="cidade" value="{{medico.endereco.cidade}}">
+      </div>
+      <div>
+      <label for="estado">Estado</label><br>
+      <select name="estado" >
+        <option value="AC">AC</option>
+        <option value="AL">AL</option>
+        <option value="AM">AM</option>
+        <option value="AP">AP</option>
+        <option value="BA">BA</option>
+        <option value="CE">CE</option>
+        <option value="DF">DF</option>
+        <option value="ES">ES</option>
+        <option value="GO">GO</option>
+        <option value="MA">MA</option>
+        <option value="MG">MG</option>
+        <option value="MS">MS</option>
+        <option value="MT">MT</option>
+        <option value="PA">PA</option>
+        <option value="PB">PB</option>
+        <option value="PE">PE</option>
+        <option value="PI">PI</option>
+        <option value="PR">PR</option>
+        <option value="RJ">RJ</option>
+        <option value="RN">RN</option>
+        <option value="RO">RO</option>
+        <option value="RR">RR</option>
+        <option value="RS">RS</option>
+        <option value="SC">SC</option>
+        <option value="SE">SE</option>
+        <option value="SP">SP</option>
+        <option value="TO">TO</option>
+      </select>
+      </div>
+      <button type="submit">Atualizar dados</button>
+      </div>
+    </form>
+  <div>
+  {{#if errorMessage}}
+    <span>{{errorMessage}}</span>
+  {{/if}}
+  </div>  
+  </div>
+  </div>
+  <div>
+    <table>
+      <tbody >
+        <tr>
+          <td class="dados-medicos-paciente"><b>Pacientes</b></td>
+        </tr>
+        {{#each pacientesMedico}}
+        <form action="/dados/remove-paciente/{{this._id}}" method="GET"></form>
+        <tr>
+          <td class="dados-medicos-paciente">{{this.name}} </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+<footer class="footer-home">
+</footer>
