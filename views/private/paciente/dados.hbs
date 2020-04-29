@@ -100,20 +100,51 @@
         <option value="TO">TO</option>
       </select>
       </div>
-      <div>
-        <label for="pais">País</label><br>
-        <input type="text" name="pais" value="{{paciente.endereco.pais}}">
-      </div>
       <button type="submit">Atualizar dados</button>
       </div>
     </form>
+    <div>
+    {{#if errorMessage}}
+      <span>{{errorMessage}}</span>
+    {{/if}}
   </div>
-  <div>
-  {{#if errorMessage}}
-    <span>{{errorMessage}}</span>
-  {{/if}}
 </div>
+<div>
+  
+    <table>
+      <tbody >
+        <tr >
+          <td class="dados-medicos-paciente" ><b>Medicos Paciente</b>  </td>
+        </tr>
+        {{#each paciente.medicos}}
+        <form action="/dados/remove-medico/{{this._id}}" method="GET">
+          <tr>
+            <td class="dados-medicos-paciente">{{this.name}} - {{this.especializacao}} <button type="submit">Remover</button></td>
+          </tr>
+        </form>
+        {{/each}}
+        
+      </tbody>
+    </table>
+
+
+    <h3><i>Adicionar novo Médico</i></h3>
+    <form  action="/dados/novo-medico" method="POST">
+      <input type="text" id="medico-name" name="medico" placeholder="Digite o nome do médico de confiança">
+      <button id="procura-medico" type="button">Procurar Médico</button>
+      <p id="msg-procura-medico" style='color:red'></p>
+      <div id ="medico-select-div"></div>
+      <button  type="submit">Adicionar</button>
+      </div>
+      <div>
+
+      </div>
+
+    </form>
+    </div>
+  </div>
 </section>
 <footer class="footer-home">
-
 </footer>
+
+<script src="/javascripts/dados.js"></script>

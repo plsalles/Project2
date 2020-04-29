@@ -15,27 +15,27 @@
   <div>
     <form id="form-sign-up" action="/consultas/editar/realizar" method="POST">
       <div>
-        <input type="hidden" name="_id" value="{{_id}}" >
+        <input type="hidden" name="_id" value="{{_doc._id}}" >
       </div>
       <div>
         <label for="CRM">Médico</label><br>
-        <input type="text" value="{{medico.name}}" disabled>
+        <input type="text" value="{{_doc.medico.name}}" disabled>
       </div>
-      <div>
-        <label for="date">Data</label><br>
-        <input type="date" name="date" value="{{date}}">
-        </div>
-      <div>
-        <label for="hora">Hora</label><br>
-        <input type="time" name="hora" value="{{hora}}">
+      <div >
+          <label for="text">Data</label><br>
+          <input type="date" name="date" value="{{date}}">
+      </div>
+      <div >
+          <label for="hora">Hora</label><br>
+          <input type="time" name="hora" value="{{hora}}">
       </div>
       <div>
         <label for="descricao">Descrição</label><br>
-        <input type="text" name="descricao" value="{{descricao}}">
+        <input type="text" name="descricao" value="{{_doc.descricao}}">
       </div>
       <div>
         <label for="exames">Exames</label><br>
-        <input type="text" name="exames" value="{{exames}}">
+        <input type="text" name="exames" value="{{_doc.exames}}">
       </div>
       <div>
         <button type="submit">Editar consulta</button>
@@ -50,5 +50,6 @@
 </section>
 <footer class="footer-home">
 </footer>
+
 
 

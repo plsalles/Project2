@@ -93,13 +93,13 @@ tempDiv = tempDiv +`<div>${month[beginDate.month()]}</div>\n`
         let consulta =  consultasAgendas[daysWeek[j]][elementHour]
         if(role==='MEDICO'){
           const paciente =(await axios.get(`http://localhost:3000/api/paciente/${consulta.paciente}`)).data
-          tempDiv2 =tempDiv2 +`<div class="calendar__day day consulta">
+          tempDiv2 =tempDiv2 +`<div class="calendar__day day consultaMarcada">
           nome:${paciente.name}</br>
           descricao:${consulta.descricao}
           </div>\n`
         }else if(role==='PACIENTE'){
           const medico =(await axios.get(`http://localhost:3000/api/medico/${consulta.medico}`)).data
-          tempDiv2 =tempDiv2 +`<div class="calendar__day day consulta">
+          tempDiv2 =tempDiv2 +`<div class="calendar__day day consultaMarcada">
           nome:${medico.name}</br>
           especializacao:${medico.especializacao}</br>
           descrição:${consulta.descricao}

@@ -5,6 +5,12 @@ body {
   font-size: 25px;
 }
 
+input[type=date]::-webkit-inner-spin-button, 
+input[type=date]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 a {
   color: #00B7FF;
 }
@@ -259,22 +265,98 @@ a {
 
 // Pagina Consulta
 
+
+
+
 .container-consultas-middle-section{
-    height: 700px;
+  margin: 30px 30px;
+  display: flex;
+  flex-direction: row;
+  background-image: url('/images/img-form.png');
+  border-radius: 4px;
+}
+
+
+.container-consultas-middle-section label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: center;
+  width: 20%;
+  height: 25px;
+
+}
+
+.container-consultas-middle-section h3 {
+  display: block;
+}
+
+
+.container-consultas-middle-section {
+  
+  // border: 1px solid #43a3e6;
+  
+  color:#700;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+
+}
+
+.container-consultas-middle-section{
+
     display: flex;
     flex-direction: column;
     font-size: 20px;
   }
 
 .container-consultas-middle-section table,td,tr{
-  border: 1px solid black;
-  text-align: center;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-right: 5px;
+  outline: 0;
+  padding: 4px;
+  margin-bottom: 20px;
+  border-radius: 4px;
 }
+
+.container-consultas-middle-section td,tr{
+  border: 1px solid #700;
+}
+
+.links-consulta-realizar a{
+  border: 1px solid #700;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none;
+
+
+}
+
+.links-consulta-realizar {
+color: grey;
+
+
+}
+
+a:link, a:visited {
+	text-decoration: none
+	}
+a:hover {
+	text-decoration: underline; 
+	color: black;
+	}
+a:active {
+	text-decoration: none
+	}
 
 .table-title td{
   font-weight: bold;
 }
-
 
 .wrapper {
   display: grid;
@@ -353,10 +435,72 @@ body {
   border-right: 0;
   background-color: #1A73E8;
 }
-.consulta {
+.consultaMarcada {
   text-align: left;
   font-size: 20px;
   border-right: 0;
   background-color:rgb(165, 189, 255);
   color:black
 }
+.consulta-botao-detalhes {
+  
+}
+
+.consulta-botao-detalhes-mais {
+  background-image: url('/images/botao-mais.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  height: 20px;
+
+}
+
+.consulta-botao-detalhes-menos {
+  background-image: url('/images/botao-menos.png')!important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 22px;
+  height: 22px;
+
+}
+
+
+#botao-criar-consulta {
+  color: grey;
+
+  
+}
+
+
+a:link, a:visited {
+	text-decoration: none
+	}
+a:hover {
+	text-decoration: underline; 
+	color: black;
+	}
+a:active {
+	text-decoration: none
+	}
+
+.table-title td{
+  font-weight: bold;
+}
+
+
+//Pagina Dados
+
+.dados-medicos-paciente{
+  border: 1px solid #700;
+  box-sizing: border-box;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.dados-medicos-paciente form{
+  margin: 10px;
+  padding: 100px;
+}
+
+
+

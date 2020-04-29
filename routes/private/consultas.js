@@ -4,7 +4,7 @@ const { Medico,Paciente,Consulta } = require('../../models')
 const moment = require('moment');
 
 
-// Rota Consultas para paciente
+// Rota Consultas 
 router.get('/', async (req, res, next) => {
   const user = req.user;
   const errorMessage = {message: req.flash('error')};
@@ -23,12 +23,19 @@ router.get('/editar/realizar/:id', async (req, res, next) => {
   const user = req.user;
   const idConsulta = req.params.id;
   const errorMessage = {message: req.flash('error')};
-  const consulta = await await Consulta.findOne({_id: idConsulta }).populate('medico').populate('paciente');
+  const consulta = await Consulta.findOne({_id: idConsulta }).populate('medico').populate('paciente');
+
   let data = moment(consulta.date).format('YYYY-MM-DD');
-  let hora = moment(consulta.date).format('HH:mm');
+  let hora = moment(consulta.date,'YYYY-MM-DD HH:mm').add(3,'hour').format('HH:mm');
+  const consultaEditar = {
+    ...consulta,
+    date: data,
+    hora: hora,
+  };
 
-
-  res.render('private/paciente/editar-consulta', consulta);
+  consulta.data = data;
+  consulta.novaHora = hora;
+  res.render('private/paciente/editar-consulta', consultaEditar);
 });
 
 //Rota POST para editar consulta
@@ -36,7 +43,10 @@ router.post('/editar/realizar', async (req, res, next) => {
 
   const user = req.user;
   const consulta = req.body;
-  console.log(req.body)
+  const data = `${consulta.date}T${consulta.hora}:00.000+00:00`;
+  let newDate = new Date(data);
+  consulta.date = data;
+  console.log(consulta)
   const updateConsulta = await Consulta.findByIdAndUpdate({_id: consulta._id},consulta);
   res.redirect('/consultas');
 });
@@ -121,7 +131,6 @@ router.post('/criar-consulta', async (req, res, next) => {
 });
 
 
-//Rota GET para deletar consulta
 router.get('/finalizar/realizar/:id', async (req, res, next) => {
 
   const idConsulta = req.params.id;
