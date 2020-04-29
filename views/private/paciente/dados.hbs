@@ -110,28 +110,34 @@
   </div>
 </div>
 <div>
+  
     <table>
-      <tbody class="dados-medicos-paciente">
-        <tr>
-          <td>Medicos Paciente  </td>
+      <tbody >
+        <tr >
+          <td class="dados-medicos-paciente" >Medicos Paciente  </td>
         </tr>
         {{#each paciente.medicos}}
-        <tr>
-          <td>{{this.name}} - {{this.especializacao}} <a href="#">Remover</a></td>
-        </tr>
+        <form action="/dados/remove-medico/{{this._id}}" method="GET">
+          <tr>
+            <td class="dados-medicos-paciente">{{this.name}} - {{this.especializacao}} <button type="submit">Remover</button></td>
+          </tr>
+        </form>
         {{/each}}
+        
       </tbody>
     </table>
 
-    <h3>Adicionar novo Médico</h3>
-    <form action="/dados/novo-medico" method="POST">
+
+    <h3><i>Adicionar novo Médico</i></h3>
+    <form  action="/dados/novo-medico" method="POST">
       <input type="text" id="medico-name" name="medico" placeholder="Digite o nome do médico de confiança">
       <button id="procura-medico" type="button">Procurar Médico</button>
       <p id="msg-procura-medico" style='color:red'></p>
       <div id ="medico-select-div"></div>
+      <button  type="submit">Adicionar</button>
       </div>
       <div>
-        <button  type="submit">Adicionar</button>
+
       </div>
 
     </form>

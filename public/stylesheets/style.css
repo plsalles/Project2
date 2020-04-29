@@ -314,4 +314,8 @@ a:active {
   border-radius: 4px;
   text-decoration: none; }
 
+.dados-medicos-paciente form {
+  margin: 10px;
+  padding: 100px; }
+
 /*# sourceMappingURL=style.css.map */

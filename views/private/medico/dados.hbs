@@ -117,13 +117,14 @@
   </div>
   <div>
     <table>
-      <tbody class="dados-pacientes-medico">
+      <tbody >
         <tr>
-          <td>Pacientes </td>
+          <td class="dados-medicos-paciente"><b>Pacientes</b></td>
         </tr>
         {{#each pacientesMedico}}
+        <form action="/dados/remove-paciente/{{this._id}}" method="GET"></form>
         <tr>
-          <td>{{this.name}} <a href="#">Remover</a></td>
+          <td class="dados-medicos-paciente">{{this.name}} </td>
         </tr>
         {{/each}}
       </tbody>

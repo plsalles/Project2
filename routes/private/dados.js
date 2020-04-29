@@ -22,6 +22,51 @@ router.get('/', async (req, res, next) => {
   }  
 });
 
+//Rota para remover medico da pagina de consulta
+
+router.get('/remove-medico/:id', async (req, res, next) => {
+  try {
+    console.log(req.params);
+    console.log(req.user);
+    
+    Paciente.findOneAndUpdate({user: req.user._id},{$pull: {medicos: req.params.id }})
+            .then(data => {
+              console.log('deletando medico',data);
+              res.redirect('/dados/');})
+            .catch(error => console.log(error));
+   
+    
+
+
+} catch (error) {
+    console.log(error);
+    res.redirect('/dados/');
+}
+});
+
+
+
+
+//Rota para adicionar medico na pagina de consulta
+
+router.post('/novo-medico/', async (req, res, next) => {
+  try {
+    console.log(req.body);
+    console.log(req.user);
+    const paciente = await Paciente.findOne({user: req.user._id});
+    console.log(paciente);
+    const novoMedico = await Paciente.findByIdAndUpdate({_id:  paciente._id},{$push: {medicos: req.body.medicoPessoalId}})
+    console.log(novoMedico)
+    res.redirect('/dados');
+  
+    
+
+
+} catch (error) {
+    console.log(error);
+    res.redirect('/dados/');
+}
+});
 
 router.post('/', async (req, res, next) => {
   try {
