@@ -11,7 +11,7 @@ document.getElementById('procura-medico').addEventListener('click', async functi
     msgProcuraMedico.innerText = 'Nome invalido, por favor tente novamente'
   }
   else{
-    medicos = (await axios.post(`https://localhost:3000/api/medico`,{name:medicoName})).data
+    medicos = (await axios.post(`https://portal-ironmedic.herokuapp.com/api/medico`,{name:medicoName})).data
     const medicoSelectDiv = document.getElementById('medico-select-div')
     if(medicos.length===0) msgProcuraMedico.innerText = 'Médico não encontrado'
     else{
