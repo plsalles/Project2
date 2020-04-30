@@ -11,8 +11,8 @@
     <a href="/logout">Logout</a>
   </div>
 </nav>
-<section class="container-dados">
-  <div>
+<section class="container-dados" >
+  <div id="dados-user" user="{{paciente._id}}" role="paciente">
     <form id="form-dados-paciente" action="/dados/" method="POST">
       <div>
         <div>
@@ -69,36 +69,9 @@
       <input type="text" name="cidade" value="{{paciente.endereco.cidade}}">
       </div>
       <div>
-      <label for="estado">Estado</label><br>
-      <select name="estado" >
-        <option value="AC">AC</option>
-        <option value="AL">AL</option>
-        <option value="AM">AM</option>
-        <option value="AP">AP</option>
-        <option value="BA">BA</option>
-        <option value="CE">CE</option>
-        <option value="DF">DF</option>
-        <option value="ES">ES</option>
-        <option value="GO">GO</option>
-        <option value="MA">MA</option>
-        <option value="MG">MG</option>
-        <option value="MS">MS</option>
-        <option value="MT">MT</option>
-        <option value="PA">PA</option>
-        <option value="PB">PB</option>
-        <option value="PE">PE</option>
-        <option value="PI">PI</option>
-        <option value="PR">PR</option>
-        <option value="RJ">RJ</option>
-        <option value="RN">RN</option>
-        <option value="RO">RO</option>
-        <option value="RR">RR</option>
-        <option value="RS">RS</option>
-        <option value="SC">SC</option>
-        <option value="SE">SE</option>
-        <option value="SP">SP</option>
-        <option value="TO">TO</option>
-      </select>
+        <label  for="estado">Estado</label><br>
+        <select id="estados" name="estado" >
+        </select>
       </div>
       <button type="submit">Atualizar dados</button>
       </div>
@@ -148,3 +121,4 @@
 </footer>
 
 <script src="/javascripts/dados.js"></script>
+<script src="/javascripts/estados.js"></script>

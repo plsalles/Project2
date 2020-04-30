@@ -31,3 +31,4 @@ document.getElementById('procura-medico').addEventListener('click', async functi
   msgProcuraMedico.innerText = 'Médico não encontrado'
 }
 })
+
