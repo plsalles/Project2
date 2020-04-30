@@ -83,6 +83,7 @@ router.post('/signup', async (req, res, next) => {
       console.log(roleUserMedico)
       const newMedico = new Medico(roleUserMedico)
       await newMedico.save()
+      return res.render('index')
     }
     if(user.role === 'PACIENTE'){
       if(req.body.medicoPessoalId){
