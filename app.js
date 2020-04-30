@@ -14,13 +14,13 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const ensureLogin = require('connect-ensure-login');
 const flash = require('connect-flash');
-
+const { MONGODB_URI } = process.env
 //Models
 const User = require('./models/User');
 
 
 mongoose
-  .connect('mongodb://localhost/project2', {
+  .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

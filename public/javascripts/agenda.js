@@ -39,7 +39,7 @@ const  calendarGenerator = async ({week}) =>{
   const consultasAgendas= {}
   for(let j =0;j<daysWeek.length;j++){
     tempDate = beginDate.add(1,'days')
-    consultasAgendas[daysWeek[j]] = (await axios.post(`http://localhost:3000/api/agenda`,{
+    consultasAgendas[daysWeek[j]] = (await axios.post(`https://portal-ironmedic.herokuapp.com/api/agenda`,{
       userId,
       role,
       date:tempDate.format('YYYY-MM-DD'),
@@ -91,13 +91,13 @@ tempDiv = tempDiv +`<div>${months[month]}</div>\n`
       if(elementHour>=0){
         let consulta =  consultasAgendas[daysWeek[j]][elementHour]
         if(role==='MEDICO'){
-          const paciente =(await axios.get(`http://localhost:3000/api/paciente/${consulta.paciente}`)).data
+          const paciente =(await axios.get(`https://portal-ironmedic.herokuapp.com/api/paciente/${consulta.paciente}`)).data
           tempDiv2 =tempDiv2 +`<div class="calendar__day day consultaMarcada">
           nome:${paciente.name}</br>
           descricao:${consulta.descricao}
           </div>\n`
         }else if(role==='PACIENTE'){
-          const medico =(await axios.get(`http://localhost:3000/api/medico/${consulta.medico}`)).data
+          const medico =(await axios.get(`https://portal-ironmedic.herokuapp.com/api/medico/${consulta.medico}`)).data
           tempDiv2 =tempDiv2 +`<div class="calendar__day day consultaMarcada">
           nome:${medico.name}</br>
           especializacao:${medico.especializacao}</br>
