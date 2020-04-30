@@ -98,7 +98,7 @@ router.post('/criar-consulta', async (req, res, next) => {
     if(user.role ==="PACIENTE"){
       const medicoIstance = await Medico.findOne({CRM:req.body.CRM});
       const pacienteIstance = await Paciente.findOne({user:req.user._id});
-      const dateMoment = moment(`${req.body.date} ${req.body.hora}`,'YYYY-MM-DD h').subtract(3,'hour')
+      const dateMoment = moment(`${req.body.date} ${req.body.hora}`,'YYYY-MM-DD h')
       const novaConsulta = {paciente: pacienteIstance._id, medico:medicoIstance._id,date:dateMoment,exames:req.body.exames,descricao:req.body.descricao};
       
       if(!medicoIstance) throw Error('Medico Not Found')
@@ -112,7 +112,7 @@ router.post('/criar-consulta', async (req, res, next) => {
     else if(user.role ==="MEDICO") {
       const medicoIstance = await Medico.findOne({user:req.user._id});
       const pacienteIstance = await Paciente.findOne({cpf:req.body.cpf});
-      const dateMoment = moment(`${req.body.date} ${req.body.hora}`,'YYYY-MM-DD h').subtract(3,'hour')
+      const dateMoment = moment(`${req.body.date} ${req.body.hora}`,'YYYY-MM-DD h')
       const novaConsulta = {paciente: pacienteIstance._id, medico:medicoIstance._id,date:dateMoment,exames:req.body.exames,descricao:req.body.descricao};
       
       if(!medicoIstance) throw Error('Medico Not Found')
