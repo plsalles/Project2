@@ -107,11 +107,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 
-<<<<<<< HEAD
-app.locals.title = 'Express - Generated with IronGenerator';
-=======
 app.locals.title = 'Portal IronMedic';
->>>>>>> d5cd4be1605971d5b25eff20a0783aef24082085
 
 const api = require('./routes/api/api.routes');
 app.use('/',api);
