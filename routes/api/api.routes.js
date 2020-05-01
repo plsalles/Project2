@@ -146,7 +146,8 @@ router.get('/api/paciente/:id', async (req, res, next) => {
   try {
       const { id } =req.params
       const paciente = await Paciente.findOne({_id:id})
-      
+      console.log(req.params)
+      console.log(paciente)
     return res.status(200).send(paciente)
     }catch (error) {
     console.log(error)
