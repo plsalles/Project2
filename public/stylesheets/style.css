@@ -387,4 +387,7 @@ a:active {
   margin: 10px;
   padding: 100px; }
 
+.isNotValid {
+  border-color: red; }
+
 /*# sourceMappingURL=style.css.map */
