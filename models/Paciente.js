@@ -4,7 +4,7 @@ const { Schema } = mongoose;
 
 const pacienteSchema = new Schema({
   data: {type: String, require: true},
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true},
   name: { type: String, require:true},
   cpf: { type: String, require: true, unique: true},
   endereco: { logradouro: { type: String, require: true}, numero: {type: Number, require: true}, bairro: { type: String, require: true}, complemento: { type: String}, cidade: { type: String, require: true}, estado: { type: String, require: true}, cep: {type: String, require: true}},

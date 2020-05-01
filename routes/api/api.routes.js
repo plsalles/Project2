@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Medico,Paciente,Consulta } = require('../../models')
+const { Medico,Paciente,Consulta,User } = require('../../models')
 const moment = require('moment');
 
 //Rota API para buscar todas as consutlas realizadas para um user
@@ -146,7 +146,8 @@ router.get('/api/paciente/:id', async (req, res, next) => {
   try {
       const { id } =req.params
       const paciente = await Paciente.findOne({_id:id})
-      
+      console.log(req.params)
+      console.log(paciente)
     return res.status(200).send(paciente)
     }catch (error) {
     console.log(error)
@@ -202,6 +203,55 @@ router.get('/api/consultas/realizadas/detalhes', async (req, res, next) => {
     res.status(500).json(error)
   }
 });
+
+
+//Rota API para buscar todas as consutlas realizadas para um user
+router.get('/api/medico/:CRM/validate', async (req, res, next) => {
+  try {
+    const {CRM } = req.params;
+    const medico = await Medico.findOne({CRM});
+
+    if(!medico) return res.status(200).send(true);
+
+    return res.status(200).send(false);
+   
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
+
+router.get('/api/paciente/:cpf/validate', async (req, res, next) => {
+  try {
+    const {cpf } = req.params;
+    const paciente = await Paciente.findOne({cpf});
+
+    if(!paciente) return res.status(200).send(true);
+
+    return res.status(200).send(false);
+   
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
+
+router.get('/api/user/:username/validate', async (req, res, next) => {
+  try {
+    const {username } = req.params;
+    const user = await User.findOne({username});
+
+    if(!user) return res.status(200).send(true);
+
+    return res.status(200).send(false);
+   
+  } catch (error) {
+    console.log(error)
+    res.status(500).json(error)
+  }
+});
+
+
 
 
 module.exports = router;
