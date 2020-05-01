@@ -15,7 +15,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const ensureLogin = require('connect-ensure-login');
 const flash = require('connect-flash');
-const { MONGODB_URI } = process.env
+const { MONGODB_URI,NODE_ENV } = process.env
 //Models
 const User = require('./models/User');
 
@@ -40,7 +40,9 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // Middleware Setup
-app.use(cors())
+if(NODE_ENV!=='development'){
+  app.use(cors())
+}
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -107,11 +109,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
 
-<<<<<<< HEAD
-app.locals.title = 'Express - Generated with IronGenerator';
-=======
 app.locals.title = 'Portal IronMedic';
->>>>>>> d5cd4be1605971d5b25eff20a0783aef24082085
 
 const api = require('./routes/api/api.routes');
 app.use('/',api);
