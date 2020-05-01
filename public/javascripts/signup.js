@@ -28,7 +28,7 @@ window.addEventListener('load', () => {
 
         //validar username
         const username = document.getElementById('username');
-        validated.username = (await axios.get(`http://localhost:3000/api/user/${username.value}/validate`)).data
+        validated.username = (await axios.get(`https://portal-ironmedic.herokuapp.com/api/user/${username.value}/validate`)).data
         if(!validated.username)
         {
           username.setAttribute('class','isNotValid')
@@ -36,7 +36,7 @@ window.addEventListener('load', () => {
         }
         //validar CRM
         const CRM = document.getElementById('CRM')
-        validated.CRM = (await axios.get(`http://localhost:3000/api/medico/${CRM.value}/validate`)).data
+        validated.CRM = (await axios.get(`https://portal-ironmedic.herokuapp.com/api/medico/${CRM.value}/validate`)).data
         if(!validated.CRM)
         {
           CRM.setAttribute('class','isNotValid')
@@ -124,7 +124,7 @@ document.getElementById('paciente-sign-up-buttom').addEventListener('click', fun
 
       //validar username
       const username = document.getElementById('username');
-      validated.username = (await axios.get(`http://localhost:3000/api/user/${username.value}/validate`)).data
+      validated.username = (await axios.get(`https://portal-ironmedic.herokuapp.com/api/user/${username.value}/validate`)).data
       if(!validated.username)
       {
         username.setAttribute('class','isNotValid')
@@ -132,7 +132,7 @@ document.getElementById('paciente-sign-up-buttom').addEventListener('click', fun
       }
       //validar cpf
       const cpf = document.getElementById('cpf')
-      validated.cpf = (await axios.get(`http://localhost:3000/api/paciente/${cpf.value}/validate`)).data
+      validated.cpf = (await axios.get(`https://portal-ironmedic.herokuapp.com/api/paciente/${cpf.value}/validate`)).data
       if(!validated.cpf)
       {
         cpf.setAttribute('class','isNotValid')
