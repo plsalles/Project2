@@ -24,9 +24,7 @@ window.addEventListener('load', async () => {
 const  calendarGenerator = async ({week}) =>{
   const formContainer = document.getElementsByClassName('wrapper')[0];
   let now = moment().add(7*week,'days')
-  const weekDay = now.day()
-  if(weekDay===0) weekDay=1
-  else if(weekDay===6) weekDay=5
+  let weekDay = now.day()
   let beginDate = now.subtract(weekDay-1,'days')
   now = moment()
   const month = beginDate.month()
