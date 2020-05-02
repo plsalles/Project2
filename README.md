@@ -30,7 +30,7 @@ After the patient/doctor create an user, they are able to login to our Portal. O
 * Patient/Doctor is able to edit and cancel the appointment.
 * Only Doctor is able to finalize the Appointment, including its notes/diagnostic of the appointment. Once an appointment is finalized, no one will be able to edit it.
 * Patients are able to edit the information, password, add or remove a doctor in their profile in the Data page. 
-* Doctors are able to edit the information, password, but are not able to add/remove patients yet (Application Improvements number #3)
+* Doctors are able to edit the information, password, but are not able to add/remove patients yet (Application Improvements third item)
 
 
 ## Coding Improvements
@@ -39,11 +39,11 @@ During the project we decided to use some framewworks to improve the usability o
 
 ### Application Improvements
 
-*#1 Change the FrontEnd language from Portuguese to English
-*#2 Implement token protection to the API routes
-*#3 Add the feature add/remove patient to the Doctors 
-*#4 Add the feature to upload any time of exam (images, videos...) to the appointment and also to the patient profile
-*#5 Work with Relation DB, to improve performance in the scenario where we have a lot of records in the database.
+* Change the FrontEnd language from Portuguese to English
+* Implement token protection to the API routes
+* Add the feature add/remove patient to the Doctors 
+* Add the feature to upload any time of exam (images, videos...) to the appointment and also to the patient profile
+* Work with Relation DB, to improve performance in the scenario where we have a lot of records in the database.
 
 
 ### CODE IMPROVEMENTS
