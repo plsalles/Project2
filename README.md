@@ -10,6 +10,11 @@ This project would not be possible without the help of our Ironhack Teacher and 
 
 Initially, to access the portal we first need to create an user. The initial botton SignUp takes the user to the SignUp page to create a user.
 
+When create the user, we need to provide the following info:
+
+* Name, username, email, address, cpf(for patient), crm (for doctors), personal doctors (for patients, optional)
+* username, cpf, crm must be unique
+
 * Link to access the portal => [HERE](https://portal-ironmedic.herokuapp.com/).
 
 ## Prerequisites
@@ -46,10 +51,12 @@ During the project we decided to use some framewworks to improve the usability o
 * Work with Relation DB, to improve performance in the scenario where we have a lot of records in the database.
 
 
-### CODE IMPROVEMENTS
+### CODE IMPROVEMENTS/BUGS
 
 * Implement partials in some HBS views to minimize the number of views
 * Refactory the CSS Style for some pages, adjust the style code and make easy to understand
+* Fix the issue in the agenda when opened in a Ultra Wide Monitor, it got stuck in the 14:00 and does not show the rest
+
 
 
 ## Contributing
